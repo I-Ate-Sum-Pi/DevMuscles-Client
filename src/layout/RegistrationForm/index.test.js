@@ -27,6 +27,16 @@ describe('Registration form', () => {
 		expect(passwordInput).toBeInTheDocument();
 	});
 
+	it('Renders a confirm password field', () => {
+		const confirmPasswordInput = screen.getByLabelText('Confirm password:');
+		expect(confirmPasswordInput).toBeInTheDocument();
+	});
+
+	it('Renders a submit button', () => {
+		const submitButton = screen.getByRole('button', { name: 'submit registration form' });
+		expect(submitButton).toBeInTheDocument();
+	});
+
 	it('Renders a show password button that toggles password input visibility', () => {
 		const togglePasswordButton = screen.getByRole('button', { name: 'toggle password visibilty' });
 		expect(togglePasswordButton).toBeInTheDocument();
