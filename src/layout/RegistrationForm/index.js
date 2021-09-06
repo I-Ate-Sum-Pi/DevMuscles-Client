@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 export default () => {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 	const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+	const [isPasswordMatchError, setIsPasswordMatchError] = useState(false);
 
 	const [formData, setFormData] = useState({
 		email: '',
@@ -33,8 +34,24 @@ export default () => {
 	let passwordInputType = () => (isPasswordVisible ? 'text ' : 'password');
 	let confirmPasswordInputType = () => (isConfirmPasswordVisible ? 'text ' : 'password');
 
+	const passwordStyle = {
+		border: isPasswordMatchError ? '2px solid red' : '1px solid grey',
+	};
+
+	const validateFormData = () => {
+		if (formData.password !== formData.confirmPassword) {
+			setIsPasswordMatchError(true);
+			return false;
+		}
+		return true;
+	};
+
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		const isFormDataValid = validateFormData();
+		if (!isFormDataValid) {
+			return;
+		}
 		push('/dashboard');
 	};
 
@@ -53,7 +70,7 @@ export default () => {
 			/>
 			<label htmlFor="email">Email:</label>
 			<input
-				type="text"
+				type="email"
 				id="email"
 				name="email"
 				required
@@ -72,6 +89,7 @@ export default () => {
 				aria-label="password field"
 				onChange={handleInputChange}
 				value={formData.password}
+				style={passwordStyle}
 			/>
 			<button onClick={togglePassword} aria-label="toggle password visibilty">
 				{isPasswordVisible ? 'Hide' : 'Show'} password
@@ -86,11 +104,17 @@ export default () => {
 				aria-label="confirm password field"
 				onChange={handleInputChange}
 				value={formData.confirmPassword}
+				style={passwordStyle}
 			/>
 			<button onClick={toggleConfirmPassword} aria-label="toggle confirm password visibilty">
 				{isConfirmPasswordVisible ? 'Hide' : 'Show'} password
 			</button>
-			<input type="submit" value="Login" />
+			<input type="submit" value="Login" aria-label="submit registration form" />
+			{isPasswordMatchError ? (
+				<p className={styles.errorMessage} role="alert">
+					Passwords do not match
+				</p>
+			) : null}
 		</form>
 	);
 };
