@@ -12,9 +12,9 @@ describe('Login form', () => {
 		expect(form).toBeInTheDocument();
 	});
 
-	it('Renders a email field', () => {
-		const emailInput = screen.getByLabelText('Email:');
-		expect(emailInput).toBeInTheDocument();
+	it('Renders a username field', () => {
+		const usernameInput = screen.getByLabelText('username field');
+		expect(usernameInput).toBeInTheDocument();
 	});
 
 	it('Renders a password field', () => {

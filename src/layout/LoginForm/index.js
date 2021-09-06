@@ -6,6 +6,17 @@ export default () => {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 	const { push } = useHistory();
 
+	const [formData, setFormData] = useState({
+		username: '',
+		password: '',
+	});
+
+	const handleInputChange = (e) => {
+		setFormData((prevState) => {
+			return { ...prevState, [e.target.id]: e.target.value };
+		});
+	};
+
 	const togglePassword = (e) => {
 		e.preventDefault();
 		setIsPasswordVisible((prevState) => !prevState);
@@ -19,14 +30,16 @@ export default () => {
 	let passwordInputType = () => (isPasswordVisible ? 'text ' : 'password');
 	return (
 		<form className={styles.form} aria-label="login form" onSubmit={handleSubmit}>
-			<label htmlFor="email">Email:</label>
+			<label htmlFor="username">Username:</label>
 			<input
 				type="text"
-				id="email"
-				name="email"
+				id="username"
+				name="username"
 				required
-				placeholder="Email"
-				aria-label="email field"
+				placeholder="Username"
+				aria-label="username field"
+				onChange={handleInputChange}
+				value={formData.username}
 			/>
 			<label htmlFor="password">Password:</label>
 			<input
@@ -36,6 +49,8 @@ export default () => {
 				required
 				placeholder="Password"
 				aria-label="password field"
+				onChange={handleInputChange}
+				value={formData.password}
 			/>
 			<button onClick={togglePassword} aria-label="toggle password visibilty">
 				{isPasswordVisible ? 'Hide' : 'Show'} password
