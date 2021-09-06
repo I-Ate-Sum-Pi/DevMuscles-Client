@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
+import { useHistory } from 'react-router-dom';
 
 export default () => {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+	const { push } = useHistory();
 
 	const togglePassword = (e) => {
 		e.preventDefault();
 		setIsPasswordVisible((prevState) => !prevState);
 	};
 
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		push('/dashboard');
+	};
+
 	let passwordInputType = () => (isPasswordVisible ? 'text ' : 'password');
 	return (
-		<form className={styles.form} aria-label="login form">
+		<form className={styles.form} aria-label="login form" onSubmit={handleSubmit}>
 			<label htmlFor="email">Email:</label>
 			<input
 				type="text"

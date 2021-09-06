@@ -1,9 +1,10 @@
 import LoginForm from '.';
+import { MemoryRouter } from 'react-router-dom';
 import { screen } from '@testing-library/react';
 
 describe('Login form', () => {
 	beforeEach(() => {
-		render(<LoginForm />);
+		render(<LoginForm />, { wrapper: MemoryRouter });
 	});
 
 	it('Renders a form', () => {
