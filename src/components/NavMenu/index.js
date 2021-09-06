@@ -34,7 +34,7 @@ export default () => {
 
 	const navStyle = {
 		left: isNavVisible ? '0' : '-100%',
-		pointerEvents: isNavVisible ? 'none' : 'all',
+		pointerEvents: isNavVisible ? 'all' : 'none',
 	};
 
 	const handleLogoutButtonClick = () => {
