@@ -1,0 +1,11 @@
+.homeButton {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+}
+
+.main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
