@@ -2,6 +2,8 @@ import Dashboard from '.';
 import { MemoryRouter } from 'react-router-dom';
 import { screen } from '@testing-library/react';
 
+jest.mock('../../components/DashboardConsole/index.js', () => () => <section></section>);
+
 describe('Dashboard Page', () => {
 	beforeEach(() => {
 		render(<Dashboard />, { wrapper: MemoryRouter });

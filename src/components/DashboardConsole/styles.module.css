@@ -1,0 +1,30 @@
+.console {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	padding: 20px;
+}
+
+.heading {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: flex-end;
+	width: 100%;
+}
+
+.heading h2,
+.heading p {
+	margin: 0;
+}
+
+.addWorkoutLink {
+	display: flex;
+	align-items: center;
+	margin: 20px 0;
+}
+
+.icon {
+	height: 30px;
+	width: 30px;
+}
