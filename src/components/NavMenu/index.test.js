@@ -2,7 +2,7 @@ import NavMenu from '.';
 import { screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
-describe('Profile Page', () => {
+describe('Navigation menu', () => {
 	beforeEach(() => {
 		render(<NavMenu />, { wrapper: MemoryRouter });
 	});

@@ -2,7 +2,7 @@ import Landing from '.';
 import { screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
-describe('Profile Page', () => {
+describe('Landing Page', () => {
 	beforeEach(() => {
 		render(<Landing />, { wrapper: MemoryRouter });
 	});
