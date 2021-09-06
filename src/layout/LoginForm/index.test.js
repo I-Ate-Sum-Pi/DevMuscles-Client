@@ -22,6 +22,11 @@ describe('Login form', () => {
 		expect(passwordInput).toBeInTheDocument();
 	});
 
+	it('Renders a submit button', () => {
+		const submitButton = screen.getByRole('button', { name: 'submit login form' });
+		expect(submitButton).toBeInTheDocument();
+	});
+
 	it('Renders a show password button that toggles password input visibility', () => {
 		const togglePasswordButton = screen.getByRole('button', { name: 'toggle password visibilty' });
 		expect(togglePasswordButton).toBeInTheDocument();

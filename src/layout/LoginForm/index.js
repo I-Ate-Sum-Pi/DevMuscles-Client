@@ -55,7 +55,7 @@ export default () => {
 			<button onClick={togglePassword} aria-label="toggle password visibilty">
 				{isPasswordVisible ? 'Hide' : 'Show'} password
 			</button>
-			<input type="submit" value="Login" />
+			<input type="submit" value="Login" aria-label="submit login form" />
 		</form>
 	);
 };
