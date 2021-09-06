@@ -10,8 +10,7 @@ export default () => {
 		<>
 			<NavMenu />
 			<main className={styles.main}>
-				<h1>Hi, &lt;username&gt;</h1>
-
+				<h1 aria-label="greeting">Hi, &lt;username&gt;</h1>
 				<div className={styles.links} role="presentation">
 					<Link className={styles.iconLink} to="/calendar" aria-label="calendar page link">
 						<IconContext.Provider value={{ className: styles.icon }}>

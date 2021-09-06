@@ -8,7 +8,7 @@ describe('Dashboard Page', () => {
 	});
 
 	it('Renders a heading', () => {
-		let heading = screen.getByRole('heading');
+		let heading = screen.getByRole('heading', { name: 'greeting' });
 		expect(heading).toBeInTheDocument();
 		expect(heading.textContent).toContain('Hi, ');
 	});
