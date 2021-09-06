@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './styles.module.css';
 import { NavLink } from 'react-router-dom';
 
 export default () => {
+	const [isNavVisible, setIsNavVisible] = useState(false);
+
 	const pages = [
 		{
 			name: 'Home',
@@ -26,6 +28,15 @@ export default () => {
 		},
 	];
 
+	const toggleNavVisiblity = () => {
+		setIsNavVisible((prevState) => !prevState);
+	};
+
+	const navStyle = {
+		left: isNavVisible ? '0' : '-100%',
+		pointerEvents: isNavVisible ? 'none' : 'all',
+	};
+
 	const handleLogoutButtonClick = () => {
 		// TODO Auth logout
 		console.log('Logout button clicked');
@@ -39,11 +50,20 @@ export default () => {
 		));
 
 	return (
-		<nav className={styles.nav}>
-			<ul>{renderLinks()}</ul>
-			<button onClick={handleLogoutButtonClick} aria-label>
-				Logout
+		<>
+			<button
+				className={styles.toggleNavButton}
+				aria-label="toggle navigation menu visibility"
+				onClick={toggleNavVisiblity}
+			>
+				☰
 			</button>
-		</nav>
+			<nav className={styles.nav} style={navStyle}>
+				<ul>{renderLinks()}</ul>
+				<button onClick={handleLogoutButtonClick} aria-label="logout">
+					Logout
+				</button>
+			</nav>
+		</>
 	);
 };

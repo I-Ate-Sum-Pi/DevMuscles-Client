@@ -7,6 +7,13 @@ describe('Navigation menu', () => {
 		render(<NavMenu />, { wrapper: MemoryRouter });
 	});
 
+	it('Renders a toggle visibilty button', () => {
+		const toggleNavVisibilityButton = screen.getByRole('button', {
+			name: 'toggle navigation menu visibility',
+		});
+		expect(toggleNavVisibilityButton).toBeInTheDocument();
+	});
+
 	it('Renders a navigation menu', () => {
 		let nav = screen.getByRole('navigation');
 		expect(nav).toBeInTheDocument();
@@ -23,7 +30,22 @@ describe('Navigation menu', () => {
 	});
 
 	it('Renders a logout button', () => {
-		let logoutButton = screen.getByRole('button');
+		let logoutButton = screen.getByRole('button', { name: 'logout' });
 		expect(logoutButton).toBeInTheDocument();
+	});
+
+	it('Clicking the toggle nav button brings the nav into view', () => {
+		const toggleNavVisibilityButton = screen.getByRole('button', {
+			name: 'toggle navigation menu visibility',
+		});
+		const nav = screen.getByRole('navigation');
+
+		expect(nav.style.left).toBe('-100%');
+
+		userEvent.click(toggleNavVisibilityButton);
+		expect(nav.style.left).toBe('0px');
+
+		userEvent.click(toggleNavVisibilityButton);
+		expect(nav.style.left).toBe('-100%');
 	});
 });
