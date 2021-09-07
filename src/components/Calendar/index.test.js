@@ -6,4 +6,14 @@ describe('Calendar', () => {
 	beforeEach(() => {
 		render(<Calendar />, { wrapper: MemoryRouter });
 	});
+
+	it('Renders a toggle previous year button', () => {
+		const togglePrevYearButton = screen.getByText('«');
+		expect(togglePrevYearButton).toBeInTheDocument();
+	});
+
+	it('Renders a toggle previous month button', () => {
+		const togglePrevMonthButton = screen.getByText('«');
+		expect(togglePrevMonthButton).toBeInTheDocument();
+	});
 });
