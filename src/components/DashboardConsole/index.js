@@ -21,7 +21,6 @@ export default () => {
 				setWorkouts(data);
 				setIsLoading(false);
 			} catch (err) {
-				console.log(err);
 				setIsError(true);
 			}
 		};

@@ -46,4 +46,14 @@ describe('Navigation menu', () => {
 
 	// 	await waitFor(() => expect(axios.get).toHaveBeenCalled());
 	// });
+
+	it('Renders an error message on a failed fetch', async () => {
+		axios.get.mockRejectedValueOnce({ error: 'test error' });
+		render(<DashboardConsole />, { wrapper: MemoryRouter });
+		await waitFor(() => expect(axios.get).toHaveBeenCalled());
+
+		const errorMessage = screen.getByRole('alert');
+		expect(errorMessage).toBeInTheDocument();
+		expect(errorMessage.textContent).toContain('Oops! Something went wrong.');
+	});
 });
