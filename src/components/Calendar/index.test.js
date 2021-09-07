@@ -26,4 +26,13 @@ describe('Calendar', () => {
 		const toggleNextMonthButton = screen.getByText('›');
 		expect(toggleNextMonthButton).toBeInTheDocument();
 	});
+	it('Renders the days abbreivation on the calendar', () => {
+		const DayAbbreviation = screen.getByText('Mon');
+		expect(DayAbbreviation).toBeInTheDocument();
+	});
+
+	it('Renders the month at the top of the calendar', () => {
+		const MonthAtTopOfPage = screen.getByText('September 2021');
+		expect(MonthAtTopOfPage).toBeInTheDocument();
+	});
 });
