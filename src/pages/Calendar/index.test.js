@@ -8,13 +8,13 @@ describe('Calendar Page', () => {
 	});
 
 	it('Renders a heading', () => {
-		let heading = screen.getByRole('heading');
+		const heading = screen.getByRole('heading');
 		expect(heading).toBeInTheDocument();
 		expect(heading.textContent).toBe('Hello Calendar!');
 	});
 
 	it('Renders a calendar', () => {
-		let calendar = screen.getByLabelText('Calendar');
+		const calendar = screen.getByLabelText('Calendar');
 		expect(calendar).toBeInTheDocument();
 	});
 });
