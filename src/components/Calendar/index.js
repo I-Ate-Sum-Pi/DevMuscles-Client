@@ -11,9 +11,8 @@ export default () => {
 		push(`/calendar/${dayjs(e).format('DD-MM-YYYY')}`);
 	};
 	return (
-		<main>
-			<h1>Hello Calendar!</h1>
-			<Calendar value={dateState} onChange={changeDate} />
-		</main>
+		<>
+			<Calendar onChange={changeDate} />
+		</>
 	);
 };
