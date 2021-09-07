@@ -12,6 +12,9 @@ export default () => {
 		<main>
 			<h1>Hello Calendar!</h1>;
 			<Calendar value={dateState} onChange={changeDate} />
+			<p>
+				The date you have currently selected is <b> {moment(dateState).format('Do MMMM YYYY')}</b>
+			</p>
 		</main>
 	);
 };
