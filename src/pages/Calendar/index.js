@@ -11,7 +11,7 @@ export default () => {
 	return (
 		<main>
 			<h1>Hello Calendar!</h1>;
-			<Calendar />
+			<Calendar value={dateState} onChange={changeDate} />
 		</main>
 	);
 };
