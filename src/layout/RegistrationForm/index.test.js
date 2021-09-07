@@ -1,10 +1,13 @@
 import RegistrationForm from '.';
 import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, screen } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 
 describe('Registration form', () => {
 	beforeEach(() => {
-		renderWithAuth(<RegistrationForm />, { wrapper: MemoryRouter });
+		act(() => {
+			renderWithAuth(<RegistrationForm />, { wrapper: MemoryRouter });
+		});
 	});
 
 	it('Renders a form', () => {
@@ -12,24 +15,40 @@ describe('Registration form', () => {
 		expect(form).toBeInTheDocument();
 	});
 
-	it('Renders a username field', () => {
+	it('Renders a controlled username field', () => {
 		const usernameInput = screen.getByLabelText('Username:');
 		expect(usernameInput).toBeInTheDocument();
+		act(() => {
+			fireEvent.change(usernameInput, { target: { value: 'test username' } });
+		});
+		expect(usernameInput).toHaveValue('test username');
 	});
 
 	it('Renders a email field', () => {
 		const emailInput = screen.getByLabelText('Email:');
 		expect(emailInput).toBeInTheDocument();
+		act(() => {
+			fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
+		});
+		expect(emailInput).toHaveValue('test@example.com');
 	});
 
 	it('Renders a password field', () => {
 		const passwordInput = screen.getByLabelText('Password:');
 		expect(passwordInput).toBeInTheDocument();
+		act(() => {
+			fireEvent.change(passwordInput, { target: { value: 'test' } });
+		});
+		expect(passwordInput).toHaveValue('test');
 	});
 
 	it('Renders a confirm password field', () => {
 		const confirmPasswordInput = screen.getByLabelText('Confirm password:');
 		expect(confirmPasswordInput).toBeInTheDocument();
+		act(() => {
+			fireEvent.change(confirmPasswordInput, { target: { value: 'test' } });
+		});
+		expect(confirmPasswordInput).toHaveValue('test');
 	});
 
 	it('Renders a submit button', () => {
