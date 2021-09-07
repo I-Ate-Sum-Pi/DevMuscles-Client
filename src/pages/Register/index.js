@@ -12,7 +12,7 @@ export default () => {
 			<main className={styles.main}>
 				<h1>Register</h1>
 				<RegistrationForm />
-				<Link to="/register" aria-label="go to register page">
+				<Link to="/login" aria-label="go to register page">
 					Already have an account yet? Login here
 				</Link>
 			</main>

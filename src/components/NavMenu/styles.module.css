@@ -1,8 +1,17 @@
+.toggleNavButton {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	z-index: 1000;
+}
+
 .nav {
 	display: flex;
 	flex-direction: column;
 	position: fixed;
 	top: 0;
-	left: 0;
 	padding: 20px;
+	z-index: 500;
+	background-color: red;
+	transition: 0.4s;
 }
