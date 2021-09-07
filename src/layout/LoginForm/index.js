@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
 import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default () => {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -10,6 +11,8 @@ export default () => {
 		username: '',
 		password: '',
 	});
+
+	const { login } = useAuth();
 
 	const handleInputChange = (e) => {
 		setFormData((prevState) => {
@@ -24,7 +27,12 @@ export default () => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		push('/dashboard');
+		const response = login(formData.username, formData.password);
+		if (response) {
+			push('/dashboard');
+		} else {
+			alert('Something went wrong, please try again.');
+		}
 	};
 
 	let passwordInputType = () => (isPasswordVisible ? 'text ' : 'password');
