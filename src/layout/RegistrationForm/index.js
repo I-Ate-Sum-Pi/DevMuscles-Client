@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
 import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default () => {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -13,6 +14,8 @@ export default () => {
 		password: '',
 		confirmPassword: '',
 	});
+
+	const { register } = useAuth();
 
 	const handleInputChange = (e) => {
 		setFormData((prevState) => {
@@ -47,12 +50,21 @@ export default () => {
 	};
 
 	const handleSubmit = (e) => {
-		e.preventDefault();
-		const isFormDataValid = validateFormData();
-		if (!isFormDataValid) {
-			return;
+		try {
+			e.preventDefault();
+			const isFormDataValid = validateFormData();
+			if (!isFormDataValid) {
+				return;
+			}
+			const { username, email, password, confirmPassword } = formData;
+			const response = register(username, email, password, confirmPassword);
+			if (!response) {
+				throw new Error('Oops! Something went wrong');
+			}
+			push('/dashboard');
+		} catch (err) {
+			console.error(err);
 		}
-		push('/dashboard');
 	};
 
 	return (
