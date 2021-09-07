@@ -5,6 +5,9 @@ import moment from 'moment';
 
 export default () => {
 	const [dateState, setDateState] = useState(new Date());
+	const changeDate = (e) => {
+		setDateState(e);
+	};
 	return (
 		<main>
 			<h1>Hello Calendar!</h1>;
