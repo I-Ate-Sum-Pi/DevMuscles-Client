@@ -11,8 +11,8 @@ export default () => {
 		push(`/calendar/${dayjs(e).format('DD-MM-YYYY')}`);
 	};
 	return (
-		<>
+		<section aria-label="Calendar">
 			<Calendar onChange={changeDate} />
-		</>
+		</section>
 	);
 };
