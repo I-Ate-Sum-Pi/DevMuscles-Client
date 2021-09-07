@@ -13,7 +13,17 @@ describe('Calendar', () => {
 	});
 
 	it('Renders a toggle previous month button', () => {
-		const togglePrevMonthButton = screen.getByText('«');
+		const togglePrevMonthButton = screen.getByText('‹');
+		expect(togglePrevMonthButton).toBeInTheDocument();
+	});
+
+	it('Renders a toggle next year button', () => {
+		const toggleNextMonthButton = screen.getByText('»');
+		expect(toggleNextMonthButton).toBeInTheDocument();
+	});
+
+	it('Renders a toggle next month button', () => {
+		const togglePrevMonthButton = screen.getByText('‹');
 		expect(togglePrevMonthButton).toBeInTheDocument();
 	});
 });
