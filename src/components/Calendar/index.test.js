@@ -23,7 +23,7 @@ describe('Calendar', () => {
 	});
 
 	it('Renders a toggle next month button', () => {
-		const togglePrevMonthButton = screen.getByText('‹');
-		expect(togglePrevMonthButton).toBeInTheDocument();
+		const toggleNextMonthButton = screen.getByText('›');
+		expect(toggleNextMonthButton).toBeInTheDocument();
 	});
 });
