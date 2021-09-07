@@ -6,7 +6,7 @@ jest.mock('../../components/DashboardConsole/index.js', () => () => <section></s
 
 describe('Dashboard Page', () => {
 	beforeEach(() => {
-		render(<Dashboard />, { wrapper: MemoryRouter });
+		renderWithAuth(<Dashboard />, { wrapper: MemoryRouter });
 	});
 
 	it('Renders a heading', () => {
