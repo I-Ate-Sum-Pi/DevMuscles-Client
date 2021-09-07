@@ -12,4 +12,9 @@ describe('Calendar Page', () => {
 		expect(heading).toBeInTheDocument();
 		expect(heading.textContent).toBe('Hello Calendar!');
 	});
+
+	it('Renders a calendar', () => {
+		let calendar = screen.getByLabelText('Calendar');
+		expect(calendar).toBeInTheDocument();
+	});
 });
