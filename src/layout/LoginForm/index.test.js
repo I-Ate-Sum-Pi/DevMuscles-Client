@@ -4,7 +4,7 @@ import { screen } from '@testing-library/react';
 
 describe('Login form', () => {
 	beforeEach(() => {
-		render(<LoginForm />, { wrapper: MemoryRouter });
+		renderWithAuth(<LoginForm />, { wrapper: MemoryRouter });
 	});
 
 	it('Renders a form', () => {

@@ -4,7 +4,7 @@ import { fireEvent, screen } from '@testing-library/react';
 
 describe('Registration form', () => {
 	beforeEach(() => {
-		render(<RegistrationForm />, { wrapper: MemoryRouter });
+		renderWithAuth(<RegistrationForm />, { wrapper: MemoryRouter });
 	});
 
 	it('Renders a form', () => {
