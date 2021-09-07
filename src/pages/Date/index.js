@@ -3,7 +3,8 @@ import React from 'react';
 export default () => {
 	return (
 		<main>
-			<h1>Hello Date!</h1>;
+			<h1>Want to the put the date that the user tapped on here!</h1>;
+			<h2>Put a Modal here for the workouts that the user has scheduled</h2>
 		</main>
 	);
 };
