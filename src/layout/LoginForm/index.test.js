@@ -1,10 +1,13 @@
 import LoginForm from '.';
 import { MemoryRouter } from 'react-router-dom';
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 
 describe('Login form', () => {
 	beforeEach(() => {
-		renderWithAuth(<LoginForm />, { wrapper: MemoryRouter });
+		act(() => {
+			renderWithAuth(<LoginForm />, { wrapper: MemoryRouter });
+		});
 	});
 
 	it('Renders a form', () => {
@@ -12,14 +15,22 @@ describe('Login form', () => {
 		expect(form).toBeInTheDocument();
 	});
 
-	it('Renders a username field', () => {
+	it('Renders a controlled username field', () => {
 		const usernameInput = screen.getByLabelText('username field');
 		expect(usernameInput).toBeInTheDocument();
+		act(() => {
+			fireEvent.change(usernameInput, { target: { value: 'test username' } });
+		});
+		expect(usernameInput).toHaveValue('test username');
 	});
 
-	it('Renders a password field', () => {
+	it('Renders a controlled password field', () => {
 		const passwordInput = screen.getByLabelText('Password:');
 		expect(passwordInput).toBeInTheDocument();
+		act(() => {
+			fireEvent.change(passwordInput, { target: { value: 'test password' } });
+		});
+		expect(passwordInput).toHaveValue('test password');
 	});
 
 	it('Renders a submit button', () => {
