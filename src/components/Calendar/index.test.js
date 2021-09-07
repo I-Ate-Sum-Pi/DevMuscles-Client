@@ -18,8 +18,8 @@ describe('Calendar', () => {
 	});
 
 	it('Renders a toggle next year button', () => {
-		const toggleNextMonthButton = screen.getByText('»');
-		expect(toggleNextMonthButton).toBeInTheDocument();
+		const toggleNextYearButton = screen.getByText('»');
+		expect(toggleNextYearButton).toBeInTheDocument();
 	});
 
 	it('Renders a toggle next month button', () => {
