@@ -10,9 +10,13 @@ describe('DashboardConsole component', () => {
 		jest.resetAllMocks();
 	});
 
+	const mockContextValue = {
+		currentUser: { username: 'test', email: 'test@example.com', token: 'testtoken', id: 1 },
+	};
+
 	it('Renders an add workout link', async () => {
-		axios.get.mockResolvedValueOnce({ data: [{ name: 'mock workout' }] });
-		renderWithAuthProvider(<DashboardConsole />, { wrapper: MemoryRouter });
+		axios.get.mockResolvedValueOnce({ data: [{ workout_id: 'mock workout', time: 1000 }] });
+		renderWithAuthContext(<DashboardConsole />, mockContextValue, { wrapper: MemoryRouter });
 		await waitFor(() => expect(axios.get).toHaveBeenCalled());
 
 		const link = screen.getByRole('link', { name: 'add workout today' });
@@ -20,8 +24,8 @@ describe('DashboardConsole component', () => {
 	});
 
 	it("Renders today's date", async () => {
-		axios.get.mockResolvedValueOnce({ data: [{ name: 'mock workout' }] });
-		renderWithAuthProvider(<DashboardConsole />, { wrapper: MemoryRouter });
+		axios.get.mockResolvedValueOnce({ data: [{ workout_id: 'mock workout', time: 1000 }] });
+		renderWithAuthContext(<DashboardConsole />, mockContextValue, { wrapper: MemoryRouter });
 		await waitFor(() => expect(axios.get).toHaveBeenCalled());
 
 		const date = screen.getByLabelText("today's date");
@@ -29,8 +33,8 @@ describe('DashboardConsole component', () => {
 	});
 
 	it("Renders today's date", async () => {
-		axios.get.mockResolvedValueOnce({ data: [{ name: 'mock workout' }] });
-		renderWithAuthProvider(<DashboardConsole />, { wrapper: MemoryRouter });
+		axios.get.mockResolvedValueOnce({ data: [{ workout_id: 'mock workout', time: 1000 }] });
+		renderWithAuthContext(<DashboardConsole />, mockContextValue, { wrapper: MemoryRouter });
 		await waitFor(() => expect(axios.get).toHaveBeenCalled());
 
 		const heading = screen.getByRole('heading', { name: "today's schedule" });
@@ -39,7 +43,7 @@ describe('DashboardConsole component', () => {
 
 	// it('Renders a spinner whilst loading fetch data', async () => {
 	// 	axios.get.mockResolvedValueOnce({ data: [{ name: 'mock workout' }] });
-	// 	renderWithAuthProvider(<DashboardConsole />, { wrapper: MemoryRouter });
+	// renderWithAuthContext(<DashboardConsole />, mockContextValue, { wrapper: MemoryRouter });
 	// 	const spinner = screen.getByTestId('spinner');
 	// 	expect(spinner).toBeInTheDocument();
 
@@ -48,7 +52,7 @@ describe('DashboardConsole component', () => {
 
 	it('Renders an error message on a failed fetch', async () => {
 		axios.get.mockRejectedValueOnce({ error: 'test error' });
-		renderWithAuthProvider(<DashboardConsole />, { wrapper: MemoryRouter });
+		renderWithAuthContext(<DashboardConsole />, mockContextValue, { wrapper: MemoryRouter });
 		await waitFor(() => expect(axios.get).toHaveBeenCalled());
 
 		const errorMessage = screen.getByRole('alert');
