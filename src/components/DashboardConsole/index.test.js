@@ -13,7 +13,7 @@ describe('Navigation menu', () => {
 
 	it('Renders an add workout link', async () => {
 		axios.get.mockResolvedValueOnce({ data: [{ name: 'mock workout' }] });
-		render(<DashboardConsole />, { wrapper: MemoryRouter });
+		renderWithAuth(<DashboardConsole />, { wrapper: MemoryRouter });
 		await waitFor(() => expect(axios.get).toHaveBeenCalled());
 
 		const link = screen.getByRole('link', { name: 'add workout today' });
@@ -22,7 +22,7 @@ describe('Navigation menu', () => {
 
 	it("Renders today's date", async () => {
 		axios.get.mockResolvedValueOnce({ data: [{ name: 'mock workout' }] });
-		render(<DashboardConsole />, { wrapper: MemoryRouter });
+		renderWithAuth(<DashboardConsole />, { wrapper: MemoryRouter });
 		await waitFor(() => expect(axios.get).toHaveBeenCalled());
 
 		const date = screen.getByLabelText("today's date");
@@ -31,7 +31,7 @@ describe('Navigation menu', () => {
 
 	it("Renders today's date", async () => {
 		axios.get.mockResolvedValueOnce({ data: [{ name: 'mock workout' }] });
-		render(<DashboardConsole />, { wrapper: MemoryRouter });
+		renderWithAuth(<DashboardConsole />, { wrapper: MemoryRouter });
 		await waitFor(() => expect(axios.get).toHaveBeenCalled());
 
 		const heading = screen.getByRole('heading', { name: "today's schedule" });
@@ -40,7 +40,7 @@ describe('Navigation menu', () => {
 
 	// it('Renders a spinner whilst loading fetch data', async () => {
 	// 	axios.get.mockResolvedValueOnce({ data: [{ name: 'mock workout' }] });
-	// 	render(<DashboardConsole />, { wrapper: MemoryRouter });
+	// 	renderWithAuth(<DashboardConsole />, { wrapper: MemoryRouter });
 	// 	const spinner = screen.getByTestId('spinner');
 	// 	expect(spinner).toBeInTheDocument();
 
@@ -49,7 +49,7 @@ describe('Navigation menu', () => {
 
 	it('Renders an error message on a failed fetch', async () => {
 		axios.get.mockRejectedValueOnce({ error: 'test error' });
-		render(<DashboardConsole />, { wrapper: MemoryRouter });
+		renderWithAuth(<DashboardConsole />, { wrapper: MemoryRouter });
 		await waitFor(() => expect(axios.get).toHaveBeenCalled());
 
 		const errorMessage = screen.getByRole('alert');

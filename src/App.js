@@ -25,6 +25,9 @@ export default function App() {
 				<Route exact path="/login">
 					<Pages.Login />
 				</Route>
+				<Route exact path="/logout">
+					<Pages.Logout />
+				</Route>
 				<Route exact path="/profile">
 					<Pages.Profile />
 				</Route>
