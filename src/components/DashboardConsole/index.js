@@ -16,7 +16,6 @@ export default () => {
 	const { currentUser } = useAuth();
 
 	useEffect(() => {
-		console.log(currentUser);
 		const fetchWorkouts = async () => {
 			try {
 				if (!currentUser) {
