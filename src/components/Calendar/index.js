@@ -27,9 +27,9 @@ export default () => {
 					`${API_ROOT}/users/${currentUser.id}/dates?date=${date}`
 				);
 				console.log(dates);
-				if (dates) {
-					//Make calendar coloured not sure how to do this
-				}
+				// if (dates) {
+				// 	//Make calendar coloured not sure how to do this
+				// }
 			} catch (err) {
 				console.error(err);
 				return null;
@@ -37,9 +37,21 @@ export default () => {
 		};
 		fetchDatesWithWorkouts();
 	}, []);
+
 	return (
 		<section aria-label="Calendar">
-			<Calendar onChange={changeDate} />
+			<Calendar
+				style={{ height: 500 }}
+				value={this.state.date}
+				tileClassName={({ date, view }) => {
+					if (dates.find((x) => x === dayjs(date).format('YYYY-MM-DD'))) {
+						return 'highlight';
+					}
+				}}
+				tileDisabled={({ date }) => date.getDay() === 0}
+				minDate={new Date()}
+				onChange={changeDate}
+			/>
 		</section>
 	);
 };
