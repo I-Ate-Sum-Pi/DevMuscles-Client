@@ -27,7 +27,6 @@ export default () => {
 						Authorization: `Token ${currentUser.token}`,
 					},
 				});
-				console.log(data);
 				setDates(data);
 			} catch (err) {
 				console.error(err);
