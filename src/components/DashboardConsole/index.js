@@ -21,10 +21,12 @@ export default () => {
 				if (!currentUser) {
 					return;
 				}
-				const { data } = await axios.get(
-					`${process.env.REACT_APP_API_ROOT}/users/${currentUser.id}/dates`,
-					{ headers: { Authorization: `Token ${currentUser.token}` } }
-				);
+				const API_ROOT = process.env.REACT_APP_API_ROOT
+					? process.env.REACT_APP_API_ROOT
+					: 'https://devmuscles.herokuapp.com';
+				const { data } = await axios.get(`${API_ROOT}/users/${currentUser.id}/dates`, {
+					headers: { Authorization: `Token ${currentUser.token}` },
+				});
 				setWorkouts(data);
 				setIsLoading(false);
 			} catch (err) {
