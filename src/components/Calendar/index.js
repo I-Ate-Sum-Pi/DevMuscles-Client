@@ -8,7 +8,7 @@ export default () => {
 	const { push } = useHistory();
 
 	const changeDate = (e) => {
-		push(`/calendar/${dayjs(e).format('DD-MM-YYYY')}`);
+		push(`/calendar/${dayjs(e).format('YYYY-MM-DD')}`);
 	};
 	return (
 		<section aria-label="Calendar">
