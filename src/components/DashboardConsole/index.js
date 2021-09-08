@@ -7,25 +7,33 @@ import { css } from '@emotion/react';
 import { IconContext } from 'react-icons';
 import { IoAddCircleOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default () => {
 	const [workouts, setWorkouts] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [isError, setIsError] = useState(false);
+	const { currentUser } = useAuth();
 
 	useEffect(() => {
 		const fetchWorkouts = async () => {
 			try {
-				// TODO fetch from server
-				const { data } = await axios.get('/url');
+				if (!currentUser) {
+					return;
+				}
+				const { data } = await axios.get(
+					`${process.env.REACT_APP_API_ROOT}/users/${currentUser.id}/dates`,
+					{ headers: { Authorization: `Token ${currentUser.token}` } }
+				);
 				setWorkouts(data);
 				setIsLoading(false);
 			} catch (err) {
+				console.error(err);
 				setIsError(true);
 			}
 		};
 		fetchWorkouts();
-	}, []);
+	}, [currentUser]);
 
 	const override = css`
 		margin: 20px auto;
@@ -39,7 +47,12 @@ export default () => {
 		) : isLoading ? (
 			<FadeLoader data-testid="spinner" loading={isLoading} size={50} css={override} />
 		) : (
-			workouts.map((workout, i) => <p key={i}>{workout.name}</p>)
+			workouts.map((workout, i) => (
+				<p key={i}>
+					workout_id: {workout.workout_id}, time: {workout.time.toString().slice(0, 2)}:
+					{workout.time.toString().slice(2)}
+				</p>
+			))
 		);
 	};
 
