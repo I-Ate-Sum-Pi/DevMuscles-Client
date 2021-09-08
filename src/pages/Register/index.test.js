@@ -4,7 +4,7 @@ import { screen } from '@testing-library/react';
 
 describe('Register Page', () => {
 	beforeEach(() => {
-		renderWithAuth(<Register />, { wrapper: MemoryRouter });
+		renderWithAuthProvider(<Register />, { wrapper: MemoryRouter });
 	});
 
 	it('Renders a heading', () => {

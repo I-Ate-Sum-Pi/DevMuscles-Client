@@ -1,8 +1,11 @@
 import React, { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 
-const AuthContext = React.createContext();
-const API_ROOT = process.env.REACT_APP_API_ROOT;
+export const AuthContext = React.createContext();
+
+const API_ROOT = process.env.REACT_APP_API_ROOT
+	? process.env.REACT_APP_API_ROOT
+	: 'https://devmuscles.herokuapp.com';
 
 export function useAuth() {
 	return useContext(AuthContext);

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export default () => {
+	useEffect(() => {
+		if (!process.env.REACT_APP_API_ROOT) alert('this website is currently under development');
+	});
 	return (
 		<main>
 			<h1>DevMuscles</h1>
