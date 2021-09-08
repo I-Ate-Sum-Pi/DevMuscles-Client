@@ -1,10 +1,13 @@
 import RegistrationForm from '.';
 import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, screen } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 
 describe('Registration form', () => {
 	beforeEach(() => {
-		renderWithAuth(<RegistrationForm />, { wrapper: MemoryRouter });
+		act(() => {
+			renderWithAuth(<RegistrationForm />, { wrapper: MemoryRouter });
+		});
 	});
 
 	it('Renders a form', () => {
@@ -12,24 +15,41 @@ describe('Registration form', () => {
 		expect(form).toBeInTheDocument();
 	});
 
-	it('Renders a username field', () => {
+	it('Renders a controlled username field', () => {
 		const usernameInput = screen.getByLabelText('Username:');
 		expect(usernameInput).toBeInTheDocument();
+		act(() => {
+			fireEvent.change(usernameInput, { target: { value: 'test username' } });
+		});
+		expect(usernameInput).toHaveValue('test username');
 	});
 
 	it('Renders a email field', () => {
 		const emailInput = screen.getByLabelText('Email:');
 		expect(emailInput).toBeInTheDocument();
+		act(() => {
+			fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
+		});
+		expect(emailInput).toHaveValue('test@example.com');
 	});
 
 	it('Renders a password field', () => {
 		const passwordInput = screen.getByLabelText('Password:');
 		expect(passwordInput).toBeInTheDocument();
+		act(() => {
+			fireEvent.change(passwordInput, { target: { value: 'test' } });
+		});
+		expect(passwordInput).toHaveValue('test');
 	});
 
 	it('Renders a confirm password field', () => {
 		const confirmPasswordInput = screen.getByLabelText('Confirm password:');
 		expect(confirmPasswordInput).toBeInTheDocument();
+		act(() => {
+			fireEvent.change(confirmPasswordInput, { target: { value: 'test' } });
+		});
+
+		expect(confirmPasswordInput).toHaveValue('test');
 	});
 
 	it('Renders a submit button', () => {
@@ -83,22 +103,18 @@ describe('Registration form', () => {
 		expect(toggleConfirmPasswordButton.textContent).toBe('Show password');
 	});
 
-	// it("renders an error message if passwords don't match", async () => {
-	// 	const usernameInput = screen.getByLabelText('username field');
-	// 	const emailInput = screen.getByLabelText('email field');
-	// 	const passwordInput = screen.getByLabelText('password field');
-	// 	const confirmPasswordInput = screen.getByLabelText('confirm password field');
-	// 	const submitButton = screen.getByRole('button', { name: 'submit registration form' });
-
-	// 	fireEvent.change(usernameInput, { target: { value: 'username' } });
-	// 	fireEvent.change(emailInput, { target: { value: 'username@example.com' } });
-	// 	fireEvent.change(passwordInput, { target: { value: 'TestPassword' } });
-	// 	fireEvent.change(confirmPasswordInput, { target: { value: 'userTestPasswordErrorname' } });
-
-	// 	fireEvent.click(submitButton);
-
-	// 	const errorMessage = await screen.findByRole('alert');
-	// 	expect(errorMessage).toBeInTheDocument();
-	// 	expect(errorMessage.textContent).toBe('Passwords do not match');
-	// });
+	it("renders an error message if passwords don't match", async () => {
+		const passwordInput = screen.getByLabelText('password field');
+		const confirmPasswordInput = screen.getByLabelText('Confirm password:');
+		const submitButton = screen.getByRole('button', { name: 'submit registration form' });
+		act(() => {
+			fireEvent.change(passwordInput, { target: { value: 'TestPassword' } });
+		});
+		act(() => {
+			fireEvent.click(submitButton);
+		});
+		const errorMessage = await screen.findByRole('alert');
+		expect(errorMessage).toBeInTheDocument();
+		expect(errorMessage.textContent).toBe('Passwords do not match');
+	});
 });

@@ -3,10 +3,12 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import './styles/globals.css';
 import { AuthProvider } from './contexts/AuthContext';
+import { AuthUser } from './components';
 
 export default function App() {
 	return (
 		<AuthProvider>
+			<AuthUser />
 			<Switch>
 				<Route exact path="/calendar">
 					<Pages.Calendar />

@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
 
 export default () => {
 	const [isNavVisible, setIsNavVisible] = useState(false);
 
+	const { logout } = useAuth();
+	const { push } = useHistory();
 	const pages = [
 		{
 			name: 'Home',
@@ -38,8 +41,8 @@ export default () => {
 	};
 
 	const handleLogoutButtonClick = () => {
-		// TODO Auth logout
-		console.log('Logout button clicked');
+		logout();
+		push('/');
 	};
 
 	const renderLinks = () =>
