@@ -13,6 +13,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
 	const [currentUser, setCurrentUser] = useState(null);
+	const [loading, setLoading] = useState(true);
 
 	async function register(username, email, password, confirmPassword) {
 		try {
@@ -74,6 +75,7 @@ export function AuthProvider({ children }) {
 			} else {
 				setCurrentUser(null);
 			}
+			setLoading(false);
 		}
 		setToken();
 	}, []);
@@ -84,5 +86,5 @@ export function AuthProvider({ children }) {
 		login,
 		logout,
 	};
-	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+	return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
 }
