@@ -1,35 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import dayjs from 'dayjs';
-import { useHistory } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
 import axios from 'axios';
+import Calendar from 'react-calendar';
+import dayjs from 'dayjs';
+import React, { useEffect, useState } from 'react';
+import styles from './styles.module.css';
+import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../contexts/AuthContext';
+import 'react-calendar/dist/Calendar.css';
 
 export default () => {
-	const { push } = useHistory();
+	const [dates, setDates] = useState([]);
+	const { currentUser } = useAuth();
 
+	const { push } = useHistory();
 	const changeDate = (e) => {
 		push(`/calendar/${dayjs(e).format('YYYY-MM-DD')}`);
 	};
 
-	const [dates, setDates] = useState([]);
-	const { currentUser } = useAuth();
-	const API_ROOT = process.env.REACT_APP_API_ROOT
-		? process.env.REACT_APP_API_ROOT
-		: 'https://devmuscles.herokuapp.com';
-
-	useEffecr(() => {
+	useEffect(() => {
 		const fetchDatesWithWorkouts = async () => {
 			try {
-				const { data: dates } = await axios.get(
-					`${API_ROOT}/users/${currentUser.id}/dates?date=${date}`
-				);
-				console.log(dates);
-				if (dates) {
-					//Make calendar coloured not sure how to do this
-				}
+				const API_ROOT = process.env.REACT_APP_API_ROOT
+					? process.env.REACT_APP_API_ROOT
+					: 'https://devmuscles.herokuapp.com';
+				const { data } = await axios.get(`${API_ROOT}/users/${currentUser.id}/dates`, {
+					headers: {
+						Authorization: `Token ${currentUser.token}`,
+					},
+				});
+				setDates(data);
 			} catch (err) {
 				console.error(err);
 				return null;
@@ -37,9 +35,17 @@ export default () => {
 		};
 		fetchDatesWithWorkouts();
 	}, []);
+
+	const tileClassName = ({ activeStartDate, date, view }) => {
+		return view === 'month' &&
+			dates.find((element) => element.date === dayjs(date).format('YYYY-MM-DD'))
+			? styles.highlightedDay
+			: null;
+	};
+
 	return (
 		<section aria-label="Calendar">
-			<Calendar onChange={changeDate} />
+			<Calendar onChange={changeDate} tileClassName={tileClassName} />
 		</section>
 	);
 };
