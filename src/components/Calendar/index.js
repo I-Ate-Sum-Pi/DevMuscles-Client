@@ -20,7 +20,7 @@ export default () => {
 		? process.env.REACT_APP_API_ROOT
 		: 'https://devmuscles.herokuapp.com';
 
-	useEffecr(() => {
+	useEffect(() => {
 		const fetchDatesWithWorkouts = async () => {
 			try {
 				const { data: dates } = await axios.get(
