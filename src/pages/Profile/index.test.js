@@ -2,12 +2,16 @@ import Profile from '.';
 import { MemoryRouter } from 'react-router-dom';
 import { screen } from '@testing-library/react';
 
-jest.mock('../../Layout/DeleteAccount/index.js', () => () => (
-	<section aria-label="delete account"></section>
-));
-
 jest.mock('../../Components/ProfileInfo/index.js', () => () => (
 	<section aria-label="user information"></section>
+));
+
+jest.mock('../../Layout/UpdatePassword/index.js', () => () => (
+	<section aria-label="update password"></section>
+));
+
+jest.mock('../../Layout/DeleteAccount/index.js', () => () => (
+	<section aria-label="delete account"></section>
 ));
 
 describe('Profile Page', () => {
@@ -28,6 +32,11 @@ describe('Profile Page', () => {
 	it('Renders a profile info section', () => {
 		let userInfo = screen.getByLabelText('user information');
 		expect(userInfo).toBeInTheDocument();
+	});
+
+	it('Renders a update password section', () => {
+		const updatePassword = screen.getByLabelText('update password');
+		expect(updatePassword).toBeInTheDocument();
 	});
 
 	it('Renders a delete account section', () => {
