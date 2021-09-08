@@ -13,6 +13,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
 	const [currentUser, setCurrentUser] = useState(null);
+	const [loading, setLoading] = useState(true);
 
 	async function register(username, email, password, confirmPassword) {
 		try {
@@ -62,6 +63,20 @@ export function AuthProvider({ children }) {
 		setCurrentUser(null);
 	}
 
+	async function deleteAccount() {
+		try {
+			await axios.delete(`${API_ROOT}/users/${currentUser.id}`, {
+				headers: {
+					Authorization: `Token ${currentUser.token}`,
+				},
+			});
+			localStorage.clear();
+			setCurrentUser(null);
+		} catch (err) {
+			console.error(err);
+		}
+	}
+
 	useEffect(() => {
 		function setToken() {
 			const token = localStorage.getItem('token');
@@ -74,6 +89,7 @@ export function AuthProvider({ children }) {
 			} else {
 				setCurrentUser(null);
 			}
+			setLoading(false);
 		}
 		setToken();
 	}, []);
@@ -83,6 +99,7 @@ export function AuthProvider({ children }) {
 		register,
 		login,
 		logout,
+		deleteAccount,
 	};
-	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+	return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
 }
