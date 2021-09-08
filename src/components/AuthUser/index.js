@@ -8,12 +8,13 @@ export default () => {
 	const { pathname } = useLocation();
 
 	useEffect(() => {
-		const unprotectedPaths = ['/', '/login', '/register'];
+		const redirectIfLoggedInPaths = ['/', '/login', '/register'];
+		const protectedPaths = ['/dashboard', '/profile', '/calendar', '/progress', '/workouts'];
 		function redirectUser() {
-			if (unprotectedPaths.includes(pathname) && currentUser) {
+			if (redirectIfLoggedInPaths.includes(pathname) && currentUser) {
 				push('/dashboard');
 			}
-			if (!unprotectedPaths.includes(pathname) && !currentUser) {
+			if (protectedPaths.findIndex((path) => path.includes(pathname)) > -1 && !currentUser) {
 				push('/');
 			}
 		}
