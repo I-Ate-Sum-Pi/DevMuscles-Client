@@ -6,6 +6,10 @@ jest.mock('../../Layout/DeleteAccount/index.js', () => () => (
 	<section aria-label="delete account"></section>
 ));
 
+jest.mock('../../Components/ProfileInfo/index.js', () => () => (
+	<section aria-label="user information"></section>
+));
+
 describe('Profile Page', () => {
 	beforeEach(() => {
 		render(<Profile />, { wrapper: MemoryRouter });
@@ -19,6 +23,11 @@ describe('Profile Page', () => {
 	it('Renders a navigation menu', () => {
 		let nav = screen.getByRole('navigation');
 		expect(nav).toBeInTheDocument();
+	});
+
+	it('Renders a profile info section', () => {
+		let userInfo = screen.getByLabelText('user information');
+		expect(userInfo).toBeInTheDocument();
 	});
 
 	it('Renders a delete account section', () => {
