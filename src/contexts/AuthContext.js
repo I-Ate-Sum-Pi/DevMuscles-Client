@@ -34,6 +34,7 @@ export function AuthProvider({ children }) {
 
 	async function login(username, password) {
 		try {
+			console.log(process.env.REACT_APP_API_ROOT, API_ROOT, `${API_ROOT}/login/`);
 			const { data } = await axios.post(`${API_ROOT}/login/`, { username, password });
 			const { data: userData } = await axios.get(`${API_ROOT}/users/${data.id}`, {
 				headers: { Authorization: `Token ${data.token}` },
@@ -61,6 +62,7 @@ export function AuthProvider({ children }) {
 	}
 
 	useEffect(() => {
+		console.log(API_ROOT);
 		function setToken() {
 			const token = localStorage.getItem('token');
 			const username = localStorage.getItem('username');
