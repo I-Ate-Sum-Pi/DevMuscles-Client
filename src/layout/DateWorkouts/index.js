@@ -1,46 +1,55 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import { ScheduleWorkoutModal } from '../../components';
 
 export default () => {
+	const [showModal, setShowModal] = useState(false);
 	const [todaysWorkouts, setTodaysWorkouts] = useState([]);
 	const { currentUser } = useAuth();
 	const { date } = useParams();
+	const { go } = useHistory();
+
+	const showAddWorkoutModal = () => {
+		setShowModal(true);
+	};
+	const closeAddWorkoutModal = () => {
+		setShowModal(false);
+	};
 
 	const API_ROOT = process.env.REACT_APP_API_ROOT
 		? process.env.REACT_APP_API_ROOT
 		: 'https://devmuscles.herokuapp.com';
 
-	const fetchDateWorkouts = async () => {
-		try {
-			const { data } = await axios.get(`${API_ROOT}/users/${currentUser.id}/dates?date=${date}`, {
-				headers: {
-					Authorization: `Token ${currentUser.token}`,
-				},
-			});
-			let { dates, workouts } = data;
-			if (dates.length > 0) {
-				dates = dates
-					.reduce((acc, curr) => {
-						const workoutIndex = workouts.findIndex((workout) => workout.id === curr.workout_id);
-						const newData = {
-							...workouts[workoutIndex],
-							...curr,
-						};
-						acc.push(newData);
-						return acc;
-					}, [])
-					.sort((a, b) => a.time - b.time);
-				setTodaysWorkouts(dates);
-			}
-		} catch (err) {
-			console.error(err);
-			return null;
-		}
-	};
-
 	useEffect(() => {
+		const fetchDateWorkouts = async () => {
+			try {
+				const { data } = await axios.get(`${API_ROOT}/users/${currentUser.id}/dates?date=${date}`, {
+					headers: {
+						Authorization: `Token ${currentUser.token}`,
+					},
+				});
+				let { dates, workouts } = data;
+				if (dates.length > 0) {
+					dates = dates
+						.reduce((acc, curr) => {
+							const workoutIndex = workouts.findIndex((workout) => workout.id === curr.workout_id);
+							const newData = {
+								...workouts[workoutIndex],
+								...curr,
+							};
+							acc.push(newData);
+							return acc;
+						}, [])
+						.sort((a, b) => a.time - b.time);
+					setTodaysWorkouts(dates);
+				}
+			} catch (err) {
+				console.error(err);
+				return null;
+			}
+		};
 		fetchDateWorkouts();
 	}, []);
 
@@ -61,7 +70,7 @@ export default () => {
 				}
 			);
 			if (data) {
-				fetchDateWorkouts();
+				go(0);
 			}
 		} catch (err) {
 			console.error(err);
@@ -70,7 +79,7 @@ export default () => {
 
 	const deleteWorkout = async (workout) => {
 		try {
-			const { data } = await axios.delete(
+			const { status } = await axios.delete(
 				`${API_ROOT}/users/${currentUser.id}/dates/${workout.id}`,
 				{
 					headers: {
@@ -78,8 +87,8 @@ export default () => {
 					},
 				}
 			);
-			if (data) {
-				fetchDateWorkouts();
+			if (status === 204) {
+				go(0);
 			}
 		} catch (err) {
 			console.error(err);
@@ -108,5 +117,13 @@ export default () => {
 			);
 		});
 	};
-	return <section aria-label="workouts">{renderWorkouts()}</section>;
+	return (
+		<>
+			<ScheduleWorkoutModal showModal={showModal} closeModal={closeAddWorkoutModal} />
+			<section aria-label="workouts">
+				{renderWorkouts()}
+				<button onClick={showAddWorkoutModal}>Add Workout</button>
+			</section>
+		</>
+	);
 };
