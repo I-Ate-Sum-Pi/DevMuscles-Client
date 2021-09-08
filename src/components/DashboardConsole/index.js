@@ -16,7 +16,6 @@ export default () => {
 	const { currentUser } = useAuth();
 
 	useEffect(() => {
-		console.log(currentUser);
 		const fetchWorkouts = async () => {
 			try {
 				if (!currentUser) {
@@ -29,7 +28,6 @@ export default () => {
 				setWorkouts(data);
 				setIsLoading(false);
 			} catch (err) {
-				console.error(err);
 				setIsError(true);
 			}
 		};

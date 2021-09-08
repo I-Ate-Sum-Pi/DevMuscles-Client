@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
-import { NavLink, useHistory } from 'react-router-dom';
-import { useAuth } from '../../contexts/AuthContext';
+import { Link, NavLink } from 'react-router-dom';
 
 export default () => {
 	const [isNavVisible, setIsNavVisible] = useState(false);
 
-	const { logout } = useAuth();
-	const { push } = useHistory();
 	const pages = [
 		{
 			name: 'Home',
@@ -40,11 +37,6 @@ export default () => {
 		pointerEvents: isNavVisible ? 'all' : 'none',
 	};
 
-	const handleLogoutButtonClick = () => {
-		logout();
-		push('/');
-	};
-
 	const renderLinks = () =>
 		pages.map((page, i) => (
 			<li key={i}>
@@ -63,8 +55,8 @@ export default () => {
 			</button>
 			<nav className={styles.nav} style={navStyle}>
 				<ul>{renderLinks()}</ul>
-				<button onClick={handleLogoutButtonClick} aria-label="logout">
-					Logout
+				<button aria-label="logout">
+					<Link to="/logout">Logout</Link>
 				</button>
 			</nav>
 		</>

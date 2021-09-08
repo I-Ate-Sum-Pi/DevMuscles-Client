@@ -3,10 +3,10 @@ import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 
-describe('Registration form', () => {
+describe('RegistrationForm layout component', () => {
 	beforeEach(() => {
 		act(() => {
-			renderWithAuth(<RegistrationForm />, { wrapper: MemoryRouter });
+			renderWithAuthProvider(<RegistrationForm />, { wrapper: MemoryRouter });
 		});
 	});
 
