@@ -2,8 +2,6 @@ import Logout from '.';
 import { MemoryRouter } from 'react-router-dom';
 import { screen } from '@testing-library/react';
 
-jest.mock('../../components/DashboardConsole/index.js', () => () => <section></section>);
-
 describe('Logout Page', () => {
 	beforeEach(() => {
 		renderWithAuth(<Logout />, { wrapper: MemoryRouter });

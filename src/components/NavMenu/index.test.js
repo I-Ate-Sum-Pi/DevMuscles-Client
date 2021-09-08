@@ -2,7 +2,7 @@ import NavMenu from '.';
 import { screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
-describe('Navigation menu', () => {
+describe('NavMenu Component', () => {
 	beforeEach(() => {
 		renderWithAuth(<NavMenu />, { wrapper: MemoryRouter });
 	});

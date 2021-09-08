@@ -1,12 +1,11 @@
 import DashboardConsole from '.';
 import { screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { act } from 'react-dom/test-utils';
 import axios from 'axios';
 
 jest.mock('axios');
 
-describe('Navigation menu', () => {
+describe('DashboardConsole component', () => {
 	beforeEach(() => {
 		jest.resetAllMocks();
 	});

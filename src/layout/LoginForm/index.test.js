@@ -3,7 +3,7 @@ import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, screen } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 
-describe('Login form', () => {
+describe('LoginForm layout component', () => {
 	beforeEach(() => {
 		act(() => {
 			renderWithAuth(<LoginForm />, { wrapper: MemoryRouter });
