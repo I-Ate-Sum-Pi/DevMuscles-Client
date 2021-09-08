@@ -1,0 +1,17 @@
+.workouts_container{
+    width: 90%;
+    /* height: 100%; */
+    border: solid 1px red;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.workouts {
+    min-width: 45%;
+    height: 100px;
+    margin-bottom: 20px;
+    border: solid 1px black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
