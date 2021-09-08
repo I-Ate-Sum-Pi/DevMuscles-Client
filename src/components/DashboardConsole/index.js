@@ -18,18 +18,33 @@ export default () => {
 	useEffect(() => {
 		const fetchWorkouts = async () => {
 			try {
-				if (!currentUser) {
-					return;
-				}
 				const API_ROOT = process.env.REACT_APP_API_ROOT
 					? process.env.REACT_APP_API_ROOT
 					: 'https://devmuscles.herokuapp.com';
-				const { data } = await axios.get(`${API_ROOT}/users/${currentUser.id}/dates`, {
-					headers: { Authorization: `Token ${currentUser.token}` },
-				});
-				setWorkouts(data);
+				const { data } = await axios.get(
+					`${API_ROOT}/users/${currentUser.id}/dates?date=${dayjs().format('YYYY-MM-DD')}`,
+					{
+						headers: { Authorization: `Token ${currentUser.token}` },
+					}
+				);
+				let { dates, workouts } = data;
+				if (dates.length > 0) {
+					dates = dates
+						.reduce((acc, curr) => {
+							const workoutIndex = workouts.findIndex((workout) => workout.id === curr.workout_id);
+							const newData = {
+								...workouts[workoutIndex],
+								...curr,
+							};
+							acc.push(newData);
+							return acc;
+						}, [])
+						.sort((a, b) => a.time - b.time);
+					setWorkouts(dates);
+				}
 				setIsLoading(false);
 			} catch (err) {
+				console.error(err);
 				setIsError(true);
 			}
 		};
@@ -47,13 +62,15 @@ export default () => {
 			</p>
 		) : isLoading ? (
 			<FadeLoader data-testid="spinner" loading={isLoading} size={50} css={override} />
-		) : (
+		) : workouts.length > 0 ? (
 			workouts.map((workout, i) => (
 				<p key={i}>
-					workout_id: {workout.workout_id}, time: {workout.time.toString().slice(0, 2)}:
+					Workout: {workout.name}, | time: {workout.time.toString().slice(0, 2)}:
 					{workout.time.toString().slice(2)}
 				</p>
 			))
+		) : (
+			<p>You have no workouts scheduled for today</p>
 		);
 	};
 
@@ -68,7 +85,7 @@ export default () => {
 			{renderWorkouts()}
 			<Link
 				className={styles.addWorkoutLink}
-				to={`/calendar/${dayjs().format('DD-MM-YYYY')}`}
+				to={`/calendar/${dayjs().format('YYYY-MM-DD')}`}
 				aria-label="add workout today"
 			>
 				<IconContext.Provider value={{ className: styles.icon }}>
