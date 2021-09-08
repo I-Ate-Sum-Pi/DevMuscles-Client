@@ -6,7 +6,7 @@ import { act } from 'react-dom/test-utils';
 describe('LoginForm layout component', () => {
 	beforeEach(() => {
 		act(() => {
-			renderWithAuth(<LoginForm />, { wrapper: MemoryRouter });
+			renderWithAuthProvider(<LoginForm />, { wrapper: MemoryRouter });
 		});
 	});
 

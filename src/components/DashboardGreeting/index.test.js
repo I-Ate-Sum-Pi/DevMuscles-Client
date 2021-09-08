@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 describe('DashboardGreeting component', () => {
 	beforeEach(() => {
-		renderWithAuth(<DashboardGreeting />, { wrapper: MemoryRouter });
+		renderWithAuthProvider(<DashboardGreeting />, { wrapper: MemoryRouter });
 	});
 
 	it('Renders a greeting', () => {

@@ -4,7 +4,7 @@ import { MemoryRouter } from 'react-router-dom';
 
 describe('NavMenu Component', () => {
 	beforeEach(() => {
-		renderWithAuth(<NavMenu />, { wrapper: MemoryRouter });
+		renderWithAuthProvider(<NavMenu />, { wrapper: MemoryRouter });
 	});
 
 	it('Renders a toggle visibilty button', () => {

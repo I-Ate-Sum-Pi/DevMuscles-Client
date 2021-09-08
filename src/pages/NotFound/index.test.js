@@ -4,7 +4,7 @@ import { screen } from '@testing-library/react';
 
 describe('NotFound Page', () => {
 	beforeEach(() => {
-		renderWithAuth(<NotFound />, { wrapper: MemoryRouter });
+		renderWithAuthProvider(<NotFound />, { wrapper: MemoryRouter });
 	});
 
 	it('Renders a heading', () => {

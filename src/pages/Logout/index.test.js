@@ -4,7 +4,7 @@ import { screen } from '@testing-library/react';
 
 describe('Logout Page', () => {
 	beforeEach(() => {
-		renderWithAuth(<Logout />, { wrapper: MemoryRouter });
+		renderWithAuthProvider(<Logout />, { wrapper: MemoryRouter });
 	});
 
 	it('Renders a heading', () => {

@@ -6,7 +6,7 @@ import { act } from 'react-dom/test-utils';
 describe('RegistrationForm layout component', () => {
 	beforeEach(() => {
 		act(() => {
-			renderWithAuth(<RegistrationForm />, { wrapper: MemoryRouter });
+			renderWithAuthProvider(<RegistrationForm />, { wrapper: MemoryRouter });
 		});
 	});
 

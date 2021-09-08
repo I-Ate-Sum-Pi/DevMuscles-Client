@@ -12,7 +12,7 @@ describe('DashboardConsole component', () => {
 
 	it('Renders an add workout link', async () => {
 		axios.get.mockResolvedValueOnce({ data: [{ name: 'mock workout' }] });
-		renderWithAuth(<DashboardConsole />, { wrapper: MemoryRouter });
+		renderWithAuthProvider(<DashboardConsole />, { wrapper: MemoryRouter });
 		await waitFor(() => expect(axios.get).toHaveBeenCalled());
 
 		const link = screen.getByRole('link', { name: 'add workout today' });
@@ -21,7 +21,7 @@ describe('DashboardConsole component', () => {
 
 	it("Renders today's date", async () => {
 		axios.get.mockResolvedValueOnce({ data: [{ name: 'mock workout' }] });
-		renderWithAuth(<DashboardConsole />, { wrapper: MemoryRouter });
+		renderWithAuthProvider(<DashboardConsole />, { wrapper: MemoryRouter });
 		await waitFor(() => expect(axios.get).toHaveBeenCalled());
 
 		const date = screen.getByLabelText("today's date");
@@ -30,7 +30,7 @@ describe('DashboardConsole component', () => {
 
 	it("Renders today's date", async () => {
 		axios.get.mockResolvedValueOnce({ data: [{ name: 'mock workout' }] });
-		renderWithAuth(<DashboardConsole />, { wrapper: MemoryRouter });
+		renderWithAuthProvider(<DashboardConsole />, { wrapper: MemoryRouter });
 		await waitFor(() => expect(axios.get).toHaveBeenCalled());
 
 		const heading = screen.getByRole('heading', { name: "today's schedule" });
@@ -39,7 +39,7 @@ describe('DashboardConsole component', () => {
 
 	// it('Renders a spinner whilst loading fetch data', async () => {
 	// 	axios.get.mockResolvedValueOnce({ data: [{ name: 'mock workout' }] });
-	// 	renderWithAuth(<DashboardConsole />, { wrapper: MemoryRouter });
+	// 	renderWithAuthProvider(<DashboardConsole />, { wrapper: MemoryRouter });
 	// 	const spinner = screen.getByTestId('spinner');
 	// 	expect(spinner).toBeInTheDocument();
 
@@ -48,7 +48,7 @@ describe('DashboardConsole component', () => {
 
 	it('Renders an error message on a failed fetch', async () => {
 		axios.get.mockRejectedValueOnce({ error: 'test error' });
-		renderWithAuth(<DashboardConsole />, { wrapper: MemoryRouter });
+		renderWithAuthProvider(<DashboardConsole />, { wrapper: MemoryRouter });
 		await waitFor(() => expect(axios.get).toHaveBeenCalled());
 
 		const errorMessage = screen.getByRole('alert');
