@@ -28,5 +28,5 @@ export default () => {
 		};
 		fetchDateWorkouts();
 	}, []);
-	return <section aria-label="workouts"></section>;
+	return <section aria-label="workouts">{workouts}</section>;
 };
