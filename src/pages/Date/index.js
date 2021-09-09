@@ -1,3 +1,4 @@
+import dayjs from 'dayjs';
 import React from 'react';
 import styles from './styles.module.css';
 import { NavMenu } from '../../components';
@@ -17,7 +18,8 @@ export default () => {
 				</IconContext.Provider>
 			</Link>
 			<main className={styles.main}>
-				<h1>{date}</h1>
+				<h1>{dayjs(date).format('DD/MM/YYYY')}</h1>
+				<p>Your scheduled workouts:</p>
 				<DateWorkout />
 			</main>
 		</>

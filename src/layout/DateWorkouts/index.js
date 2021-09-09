@@ -1,8 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import styles from './styles.module.css';
 import { useHistory, useParams } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { ScheduleWorkoutModal } from '../../components';
+import { IconContext } from 'react-icons';
+import {
+	IoCheckmarkSharp,
+	IoAddCircleOutline,
+	IoRefreshOutline,
+	IoTrashOutline,
+} from 'react-icons/io5';
 
 export default () => {
 	const [showModal, setShowModal] = useState(false);
@@ -98,21 +106,35 @@ export default () => {
 	const renderWorkouts = () => {
 		return todaysWorkouts.map((workout, i) => {
 			return (
-				<div key={i}>
-					<h2>{workout.name}</h2>
-					<p>
-						{workout.time.toString().slice(0, 2)}:{workout.time.toString().slice(2)}
-					</p>
-					<button onClick={() => updateWorkoutCompletion(workout)}>
-						Mark as {workout.completed ? 'in' : null}complete
+				<div key={i} className={styles.workout}>
+					<div key={i} className={styles.workoutInfo}>
+						<p>
+							{workout.time.toString().slice(0, 2)}:{workout.time.toString().slice(2)}
+						</p>
+						<p className={styles.workoutName}>{workout.name}</p>
+					</div>
+					<button onClick={() => updateWorkoutCompletion(workout)} className={styles.button}>
+						{workout.completed ? (
+							<IconContext.Provider value={{ className: styles.completeIcon }}>
+								<IoRefreshOutline />
+							</IconContext.Provider>
+						) : (
+							<IconContext.Provider value={{ className: styles.completeIcon }}>
+								<IoCheckmarkSharp />
+							</IconContext.Provider>
+						)}
 					</button>
 					<button
 						onClick={() => {
 							deleteWorkout(workout);
 						}}
+						className={styles.deleteButton}
 					>
-						Delete Workout
+						<IconContext.Provider value={{ className: styles.completeIcon }}>
+							<IoTrashOutline />
+						</IconContext.Provider>
 					</button>
+					<hr />
 				</div>
 			);
 		});
@@ -120,9 +142,13 @@ export default () => {
 	return (
 		<>
 			<ScheduleWorkoutModal showModal={showModal} closeModal={closeAddWorkoutModal} />
-			<section aria-label="workouts">
+			<section aria-label="workouts" className={styles.workoutsContainer}>
 				{renderWorkouts()}
-				<button onClick={showAddWorkoutModal}>Add Workout</button>
+				<button onClick={showAddWorkoutModal} className={styles.button}>
+					<IconContext.Provider value={{ className: styles.addWorkoutIcon }}>
+						<IoAddCircleOutline />
+					</IconContext.Provider>
+				</button>
 			</section>
 		</>
 	);
