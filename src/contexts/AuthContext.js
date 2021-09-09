@@ -95,6 +95,31 @@ export function AuthProvider({ children }) {
 		}
 	}
 
+	async function updateEmail(email) {
+		try {
+			await axios.put(
+				`${API_ROOT}/users/${currentUser.id}`,
+				{ email },
+				{
+					headers: {
+						Authorization: `Token ${currentUser.token}`,
+					},
+				}
+			);
+			localStorage.setItem('email', email);
+			setCurrentUser((prevState) => {
+				return {
+					...prevState,
+					email,
+				};
+			});
+			return true;
+		} catch (err) {
+			console.error(err);
+			return false;
+		}
+	}
+
 	useEffect(() => {
 		function setToken() {
 			const token = localStorage.getItem('token');
@@ -119,6 +144,7 @@ export function AuthProvider({ children }) {
 		logout,
 		deleteAccount,
 		updatePassword,
+		updateEmail,
 	};
 	return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
 }

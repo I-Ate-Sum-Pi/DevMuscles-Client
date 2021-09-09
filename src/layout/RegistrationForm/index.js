@@ -103,7 +103,7 @@ export default () => {
 				value={formData.password}
 				style={passwordStyle}
 			/>
-			<button onClick={togglePassword} aria-label="toggle password visibilty">
+			<button type="button" onClick={togglePassword} aria-label="toggle password visibilty">
 				{isPasswordVisible ? 'Hide' : 'Show'} password
 			</button>
 			<label htmlFor="confirmPassword">Confirm password:</label>
@@ -118,7 +118,11 @@ export default () => {
 				value={formData.confirmPassword}
 				style={passwordStyle}
 			/>
-			<button onClick={toggleConfirmPassword} aria-label="toggle confirm password visibilty">
+			<button
+				type="button"
+				onClick={toggleConfirmPassword}
+				aria-label="toggle confirm password visibilty"
+			>
 				{isConfirmPasswordVisible ? 'Hide' : 'Show'} password
 			</button>
 			<input type="submit" value="Login" aria-label="submit registration form" />

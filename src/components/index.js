@@ -6,5 +6,6 @@ export { default as DeleteAccountModal } from './DeleteAccountModal';
 export { default as NavMenu } from './NavMenu';
 export { default as ProfileInfo } from './ProfileInfo';
 export { default as ScheduleWorkoutModal } from './ScheduleWorkoutModal';
+export { default as UpdateEmailModal } from './UpdateEmailModal';
 export { default as UpdatePasswordModal } from './UpdatePasswordModal';
 export { default as Workout } from './Workout';

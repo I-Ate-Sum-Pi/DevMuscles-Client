@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './styles.module.css';
 import { NavMenu, ProfileInfo } from '../../components';
-import { DeleteAccount, UpdatePassword } from '../../layout';
+import { DeleteAccount, UpdateEmail, UpdatePassword } from '../../layout';
 
 export default () => {
 	return (
@@ -10,6 +10,7 @@ export default () => {
 			<main className={styles.main}>
 				<h1>Profile</h1>
 				<ProfileInfo />
+				<UpdateEmail />
 				<UpdatePassword />
 				<DeleteAccount />
 			</main>
