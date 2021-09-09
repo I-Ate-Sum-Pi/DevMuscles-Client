@@ -90,7 +90,19 @@ export default () => {
 				onChange={handleInputChange}
 				value={formData.email}
 			/>
-			<label htmlFor="password">Password:</label>
+			<label htmlFor="password">
+				Password:
+				<div
+					className={styles.passwordButton}
+					type="button"
+					onClick={togglePassword}
+					aria-label="toggle password visibilty"
+				>
+					<IconContext.Provider value={{ className: styles.passwordIcon }}>
+						{isPasswordVisible ? <IoEyeOutline /> : <IoEyeOffOutline />}
+					</IconContext.Provider>
+				</div>
+			</label>
 			<input
 				type={passwordInputType()}
 				id="password"
@@ -102,12 +114,19 @@ export default () => {
 				value={formData.password}
 				style={passwordStyle}
 			/>
-			<button type="button" onClick={togglePassword} aria-label="toggle password visibilty">
-				<IconContext.Provider value={{ className: styles.passwordIcon }}>
-					{isPasswordVisible ? <IoEyeOutline /> : <IoEyeOffOutline />}
-				</IconContext.Provider>
-			</button>
-			<label htmlFor="confirmPassword">Confirm password:</label>
+			<label htmlFor="confirmPassword">
+				Confirm password:
+				<div
+					className={styles.passwordButton}
+					type="button"
+					onClick={toggleConfirmPassword}
+					aria-label="toggle confirm password visibilty"
+				>
+					<IconContext.Provider value={{ className: styles.passwordIcon }}>
+						{isConfirmPasswordVisible ? <IoEyeOutline /> : <IoEyeOffOutline />}
+					</IconContext.Provider>
+				</div>
+			</label>
 			<input
 				type={confirmPasswordInputType()}
 				id="confirmPassword"
@@ -119,16 +138,7 @@ export default () => {
 				value={formData.confirmPassword}
 				style={passwordStyle}
 			/>
-			<button
-				type="button"
-				onClick={toggleConfirmPassword}
-				aria-label="toggle confirm password visibilty"
-			>
-				<IconContext.Provider value={{ className: styles.passwordIcon }}>
-					{isConfirmPasswordVisible ? <IoEyeOutline /> : <IoEyeOffOutline />}
-				</IconContext.Provider>
-			</button>
-			<input type="submit" value="Login" aria-label="submit registration form" />
+			<input type="submit" value="Register" aria-label="submit registration form" />
 			{isPasswordMatchError ? (
 				<p className={styles.errorMessage} role="alert">
 					Passwords do not match
