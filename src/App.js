@@ -43,6 +43,9 @@ export default function App() {
 				<Route exact path="/workouts">
 					<Pages.Workouts />
 				</Route>
+				<Route exact path="/workout">
+					<Pages.Workout />
+				</Route>
 				<Route path="/">
 					<Pages.NotFound />
 				</Route>
