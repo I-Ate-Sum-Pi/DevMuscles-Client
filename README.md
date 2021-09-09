@@ -11,10 +11,11 @@ Open terminal and run the following commands:
 ```sh
 git clone git@github.com:I-Ate-Sum-Pi/DevMuscles-Client.git dev_muscles_client
 cd dev_muscles_client
+echo REACT_APP_API_ROOT=http://localhost:8000 > src/.env
 npm install
 ```
 
-**Note:** _requires [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/)_
+**Note:** _requires [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/) and the [DevMuscles Server](https://github.com/I-Ate-Sum-Pi/DevMuscles) running locally_
 
 ### Usage
 
