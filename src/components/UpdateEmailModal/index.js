@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import { useAuth } from '../../contexts/AuthContext';
 import styles from './styles.module.css';
+import { IconContext } from 'react-icons';
+import { IoCloseCircleOutline } from 'react-icons/io5';
 
 export default ({ showModal, closeModal }) => {
 	const [formData, setFormData] = useState({
@@ -45,11 +47,13 @@ export default ({ showModal, closeModal }) => {
 	return (
 		<div style={modalStyle} className={styles.modal} aria-label="update email modal">
 			<button onClick={closeModal} aria-label="close modal">
-				X
+				<IconContext.Provider value={{ className: styles.closeButton }}>
+					<IoCloseCircleOutline />
+				</IconContext.Provider>
 			</button>
 			{!isEmailUpdated ? (
 				<form aria-label="update email form" className={styles.form} onSubmit={handleSubmit}>
-					<p>To update your email please enter your current email and your email.</p>
+					<p>To update your email please enter your current email and your new email.</p>
 					<label htmlFor="email">Current email:</label>
 					<input
 						id="email"
@@ -70,12 +74,18 @@ export default ({ showModal, closeModal }) => {
 						onChange={handleChange}
 						aria-label="new email"
 					/>
-					<input type="submit" value="Update Email" disabled={isMatchError} />
+					<input
+						type="submit"
+						value={isMatchError ? 'disabled' : 'Update Email'}
+						disabled={isMatchError}
+					/>
 				</form>
 			) : (
 				<>
 					<p>Email successfully updated!</p>
-					<button onClick={refreshPage}>Back to profile</button>
+					<button onClick={refreshPage} className={styles.backToProfile}>
+						Back to profile
+					</button>
 				</>
 			)}
 		</div>

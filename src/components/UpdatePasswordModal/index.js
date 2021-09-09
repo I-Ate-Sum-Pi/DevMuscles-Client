@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import styles from './styles.module.css';
+import { IconContext } from 'react-icons';
+import { IoCloseCircleOutline } from 'react-icons/io5';
+import { useHistory } from 'react-router';
 
 export default ({ showModal, closeModal }) => {
 	const [formData, setFormData] = useState({
@@ -13,6 +16,7 @@ export default ({ showModal, closeModal }) => {
 	const [isPasswordUpdated, setIsPasswordUpdated] = useState(false);
 
 	const { updatePassword } = useAuth();
+	const { go } = useHistory();
 
 	const handleChange = (e) => {
 		setFormData((prevState) => {
@@ -48,7 +52,9 @@ export default ({ showModal, closeModal }) => {
 	return (
 		<div style={modalStyle} className={styles.modal} aria-label="update password modal">
 			<button onClick={closeModal} aria-label="close modal">
-				X
+				<IconContext.Provider value={{ className: styles.closeButton }}>
+					<IoCloseCircleOutline />
+				</IconContext.Provider>
 			</button>
 			{!isPasswordUpdated ? (
 				<form aria-label="update password form" className={styles.form} onSubmit={handleSubmit}>
@@ -92,7 +98,14 @@ export default ({ showModal, closeModal }) => {
 			) : (
 				<>
 					<p>Password successfully updated!</p>
-					<button onClick={closeModal}>Back to profile</button>
+					<button
+						onClick={() => {
+							go(0);
+						}}
+						className={styles.backToProfile}
+					>
+						Back to profile
+					</button>
 				</>
 			)}
 		</div>
