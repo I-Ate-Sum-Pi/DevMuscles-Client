@@ -19,7 +19,7 @@ export default () => {
 			</Link>
 			<main className={styles.main}>
 				<h1>{dayjs(date).format('DD/MM/YYYY')}</h1>
-				<p>Your scheduled workouts:</p>
+				<p className={styles.info}>Your scheduled workouts:</p>
 				<DateWorkout />
 			</main>
 		</>
