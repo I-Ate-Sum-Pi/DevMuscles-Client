@@ -48,7 +48,19 @@ export default () => {
 				onChange={handleInputChange}
 				value={formData.username}
 			/>
-			<label htmlFor="password">Password:</label>
+			<label htmlFor="password">
+				Password:
+				<div
+					className={styles.passwordButton}
+					type="button"
+					onClick={togglePassword}
+					aria-label="toggle password visibilty"
+				>
+					<IconContext.Provider value={{ className: styles.passwordIcon }}>
+						{isPasswordVisible ? <IoEyeOutline /> : <IoEyeOffOutline />}
+					</IconContext.Provider>
+				</div>
+			</label>
 			<input
 				type={passwordInputType()}
 				id="password"
@@ -59,11 +71,6 @@ export default () => {
 				onChange={handleInputChange}
 				value={formData.password}
 			/>
-			<button type="button" onClick={togglePassword} aria-label="toggle password visibilty">
-				<IconContext.Provider value={{ className: styles.passwordIcon }}>
-					{isPasswordVisible ? <IoEyeOutline /> : <IoEyeOffOutline />}
-				</IconContext.Provider>
-			</button>
 			<input type="submit" value="Login" aria-label="submit login form" />
 		</form>
 	);
