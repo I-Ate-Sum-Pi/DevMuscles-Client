@@ -38,7 +38,7 @@ export default () => {
 	const renderLinks = () =>
 		pages.map((page, i) => (
 			<li key={i}>
-				<NavLink activeClassName={styles.active} to={page.link}>
+				<NavLink activeClassName={styles.active} exact to={page.link}>
 					{page.name}
 				</NavLink>
 			</li>
