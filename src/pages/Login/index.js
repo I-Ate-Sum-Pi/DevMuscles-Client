@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
 import { LoginForm } from '../../layout';
+import { PrivacyPolicyLink } from '../../components';
 
 export default () => {
 	return (
@@ -16,6 +17,7 @@ export default () => {
 					Don't have an account yet? Register here
 				</Link>
 			</main>
+			<PrivacyPolicyLink />
 		</>
 	);
 };

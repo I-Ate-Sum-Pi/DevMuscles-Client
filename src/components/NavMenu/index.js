@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
 import { Link, NavLink } from 'react-router-dom';
+import { IoReorderThree } from 'react-icons/io5';
+import { IconContext } from 'react-icons';
+import { PrivacyPolicyLink } from '..';
 
 export default () => {
 	const [isNavVisible, setIsNavVisible] = useState(false);
@@ -46,18 +49,22 @@ export default () => {
 
 	return (
 		<>
-			<button
+			<div
+				type="button"
 				className={styles.toggleNavButton}
 				aria-label="toggle navigation menu visibility"
 				onClick={toggleNavVisiblity}
 			>
-				☰
-			</button>
+				<IconContext.Provider value={{ className: styles.icon }}>
+					<IoReorderThree />
+				</IconContext.Provider>
+			</div>
 			<nav className={styles.nav} style={navStyle}>
 				<ul>{renderLinks()}</ul>
-				<button aria-label="logout">
+				<div role="presentation" className={styles.bottomLinks}>
 					<Link to="/logout">Logout</Link>
-				</button>
+					<Link to="/privacy-policy">Privacy policy</Link>
+				</div>
 			</nav>
 		</>
 	);
