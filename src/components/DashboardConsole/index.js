@@ -64,10 +64,13 @@ export default () => {
 			<FadeLoader data-testid="spinner" loading={isLoading} size={50} css={override} />
 		) : workouts.length > 0 ? (
 			workouts.map((workout, i) => (
-				<p key={i}>
-					Workout: {workout.name}, | time: {workout.time.toString().slice(0, 2)}:
-					{workout.time.toString().slice(2)}
-				</p>
+				<div key={i} className={styles.workout}>
+					<p>
+						{workout.time.toString().slice(0, 2)}:{workout.time.toString().slice(2)}
+					</p>
+					<Link to={`/workouts/${workout.id}`}>{workout.name}</Link>
+					{i === workouts.length - 1 ? null : <hr />}
+				</div>
 			))
 		) : (
 			<p>You have no workouts scheduled for today</p>
@@ -76,12 +79,7 @@ export default () => {
 
 	return (
 		<section className={styles.console}>
-			<div role="presentation" className={styles.heading}>
-				<h2 aria-label="today's schedule">
-					Today <br />
-				</h2>
-				<p aria-label="today's date">{dayjs().format('MMMM D')}</p>
-			</div>
+			<h2 aria-label="today's schedule">Your workouts for today</h2>
 			{renderWorkouts()}
 			<Link
 				className={styles.addWorkoutLink}
@@ -91,7 +89,6 @@ export default () => {
 				<IconContext.Provider value={{ className: styles.icon }}>
 					<IoAddCircleOutline />
 				</IconContext.Provider>
-				<span>Schedule a workout today</span>
 			</Link>
 		</section>
 	);
