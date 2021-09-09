@@ -1,34 +1,34 @@
-.workouts_container{
-    width: 90%;
-    border: solid 1px red;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+.workouts_container {
+	width: 90%;
+	border: solid 1px red;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 .workouts {
-    min-width: 45%;
-    height: 100px;
-    margin-bottom: 20px;
-    border: solid 1px black;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+	min-width: 45%;
+	height: 100px;
+	margin-bottom: 20px;
+	border: solid 1px black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 .icon {
 	height: 60px;
 	width: 60px;
 }
 .workout_name {
-    border: solid 1px red;
+	border: solid 1px red;
 }
 .workout_icons {
-    border: solid 1px red;
+	border: solid 1px red;
 }
 .workout_modal {
-    height: 50%;
-    width: 90%;
-    background-color: green;
-    position:absolute;
-    top: 25%;
+	height: 50%;
+	width: 90%;
+	background-color: green;
+	position: absolute;
+	top: 25%;
 }

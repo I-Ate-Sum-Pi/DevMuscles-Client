@@ -15,7 +15,7 @@ export default () => {
 	const { currentUser } = useAuth();
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
-
+	const { push } = useHistory();
 	const API_ROOT = process.env.REACT_APP_API_ROOT
 		? process.env.REACT_APP_API_ROOT
 		: 'https://devmuscles.herokuapp.com';
@@ -85,7 +85,14 @@ export default () => {
 		) : (
 			workouts.map((workout, i) => (
 				<div className={styles.workouts} key={i}>
-					<div className={styles.workout_name}>{workout['name']}</div>
+					<div
+						className={styles.workout_name}
+						onClick={() => {
+							push(`/workouts/${workout.id}`);
+						}}
+					>
+						{workout['name']}
+					</div>
 					<div className={styles.workout_icons}>
 						<div onClick={() => openUpdateForm(workout.id)}>
 							<IconContext.Provider value={{ className: styles.icon_workout }}>
