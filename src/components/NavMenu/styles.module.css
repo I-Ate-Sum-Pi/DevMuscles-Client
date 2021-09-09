@@ -52,6 +52,10 @@
 	color: #009473;
 }
 
+.active {
+	color: #009473;
+}
+
 .bottomLinks {
 	align-self: end;
 	display: flex;
