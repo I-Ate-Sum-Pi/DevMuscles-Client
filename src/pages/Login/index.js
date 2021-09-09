@@ -13,8 +13,9 @@ export default () => {
 			<main className={styles.main}>
 				<h1>Login</h1>
 				<LoginForm />
+				<p>Don't have an account yet?</p>
 				<Link to="/register" aria-label="go to register page">
-					Don't have an account yet? Register here
+					Register here
 				</Link>
 			</main>
 			<PrivacyPolicyLink />
