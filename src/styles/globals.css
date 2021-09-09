@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 * {
 	box-sizing: border-box;
 }
@@ -5,11 +7,16 @@
 body {
 	margin: 0;
 	min-height: 100vh;
-	color: rgb(242, 245, 255);
+	color: #eef6ff;
+	font-family: 'Roboto', sans-serif;
+}
+
+input {
+	font-family: 'Roboto', sans-serif;
 }
 
 a {
-	color: rgb(242, 245, 255);
+	color: #eef6ff;
 }
 main {
 	min-height: 100vh;

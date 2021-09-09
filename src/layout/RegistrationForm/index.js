@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
-import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
+import { IconContext } from 'react-icons';
 
 export default () => {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -23,7 +24,6 @@ export default () => {
 		});
 	};
 
-	const { push } = useHistory();
 	const togglePassword = (e) => {
 		e.preventDefault();
 		setIsPasswordVisible((prevState) => !prevState);
@@ -61,7 +61,6 @@ export default () => {
 			if (!response) {
 				throw new Error('Oops! Something went wrong');
 			}
-			push('/dashboard');
 		} catch (err) {
 			console.error(err);
 		}
@@ -91,7 +90,19 @@ export default () => {
 				onChange={handleInputChange}
 				value={formData.email}
 			/>
-			<label htmlFor="password">Password:</label>
+			<label htmlFor="password">
+				Password:
+				<div
+					className={styles.passwordButton}
+					type="button"
+					onClick={togglePassword}
+					aria-label="toggle password visibilty"
+				>
+					<IconContext.Provider value={{ className: styles.passwordIcon }}>
+						{isPasswordVisible ? <IoEyeOutline /> : <IoEyeOffOutline />}
+					</IconContext.Provider>
+				</div>
+			</label>
 			<input
 				type={passwordInputType()}
 				id="password"
@@ -103,10 +114,19 @@ export default () => {
 				value={formData.password}
 				style={passwordStyle}
 			/>
-			<button type="button" onClick={togglePassword} aria-label="toggle password visibilty">
-				{isPasswordVisible ? 'Hide' : 'Show'} password
-			</button>
-			<label htmlFor="confirmPassword">Confirm password:</label>
+			<label htmlFor="confirmPassword">
+				Confirm password:
+				<div
+					className={styles.passwordButton}
+					type="button"
+					onClick={toggleConfirmPassword}
+					aria-label="toggle confirm password visibilty"
+				>
+					<IconContext.Provider value={{ className: styles.passwordIcon }}>
+						{isConfirmPasswordVisible ? <IoEyeOutline /> : <IoEyeOffOutline />}
+					</IconContext.Provider>
+				</div>
+			</label>
 			<input
 				type={confirmPasswordInputType()}
 				id="confirmPassword"
@@ -118,14 +138,7 @@ export default () => {
 				value={formData.confirmPassword}
 				style={passwordStyle}
 			/>
-			<button
-				type="button"
-				onClick={toggleConfirmPassword}
-				aria-label="toggle confirm password visibilty"
-			>
-				{isConfirmPasswordVisible ? 'Hide' : 'Show'} password
-			</button>
-			<input type="submit" value="Login" aria-label="submit registration form" />
+			<input type="submit" value="Register" aria-label="submit registration form" />
 			{isPasswordMatchError ? (
 				<p className={styles.errorMessage} role="alert">
 					Passwords do not match

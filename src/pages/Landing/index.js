@@ -1,20 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import styles from './styles.module.css';
 import { Link } from 'react-router-dom';
-// import bgImage from '../../assets/images/bg-portrait.png';
 
 export default () => {
-	useEffect(() => {
-		// if (!process.env.REACT_APP_API_ROOT) alert('this website is currently under development');
-	});
 	return (
-		<main>
+		<main className={styles.main}>
 			<h1>DevMuscles</h1>
-			<Link to="/login" aria-label="login link">
-				Login
-			</Link>
-			<Link to="/register" aria-label="registration link">
-				Register
-			</Link>
+			<div role="presentation" className={styles.links}>
+				<Link to="/login" aria-label="login link">
+					Login
+				</Link>
+				<Link to="/register" aria-label="registration link">
+					Register
+				</Link>
+			</div>
 		</main>
 	);
 };

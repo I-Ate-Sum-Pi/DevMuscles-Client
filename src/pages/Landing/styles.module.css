@@ -1,0 +1,34 @@
+.main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.main h1 {
+	margin: 0 0 100px;
+	padding-top: 50px;
+}
+
+.links {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #00112291;
+	padding: 30px;
+	border-radius: 10px;
+}
+
+.links a {
+	text-decoration: none;
+	padding: 10px 20px;
+	margin: 20px 0;
+	font-size: 1.5rem;
+	border-radius: 10px;
+	background: #009473;
+	box-shadow: 5px 5px 10px #007e62, -5px -5px 10px #00aa84;
+	transition: 0.08s;
+}
+
+.links a:hover {
+	box-shadow: 5px 5px 4px #008568, -5px -5px 4px #00a37f;
+}
