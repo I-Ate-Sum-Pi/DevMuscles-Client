@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+// import bgImage from '../../assets/images/bg-portrait.png';
 
 export default () => {
 	useEffect(() => {

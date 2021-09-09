@@ -5,4 +5,21 @@
 body {
 	margin: 0;
 	min-height: 100vh;
+	color: rgb(242, 245, 255);
+}
+
+a {
+	color: rgb(242, 245, 255);
+}
+main {
+	min-height: 100vh;
+	background-image: url('../assets/images/bg-portrait.svg');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+@media only screen and (min-width: 600px) {
+	main {
+		background-image: url('../assets/images/bg-landscape.svg');
+	}
 }
