@@ -1,0 +1,72 @@
+.main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 100vh;
+	border: solid 1px red;
+}
+.main h1 {
+	margin-top: 0;
+	padding-top: 50px;
+}
+.exercise_section {
+	width: 100%;
+	height: 75vh;
+	border: solid 1px red;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	overflow-y: scroll;
+}
+
+.exercise {
+	width: 90%;
+	margin-bottom: 20px;
+	border: solid 1px red;
+}
+
+.exercise_name {
+	text-align: center;
+	padding: 10px;
+	position: relative;
+}
+.exercise_content {
+	width: 100%;
+	display: flex;
+}
+.exercise_reps,
+.exercise_weight {
+	width: 50%;
+	border: solid 1px red;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 10px;
+}
+
+.exercise_modal {
+	height: 50%;
+	width: 90%;
+	background-color: green;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+.icon {
+	height: 60px;
+	width: 60px;
+}
+.icon_exercise {
+	height: 20px;
+	width: 20px;
+	margin-left: 10px;
+}
+.workout_icons {
+	position: absolute;
+	border: solid 1px red;
+	top: 0;
+	right: 0;
+	display: flex;
+}
