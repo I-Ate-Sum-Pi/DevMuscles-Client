@@ -77,6 +77,24 @@ export function AuthProvider({ children }) {
 		}
 	}
 
+	async function updatePassword(password, newPassword, confirmNewPassword) {
+		try {
+			await axios.put(
+				`${API_ROOT}/users/${currentUser.id}`,
+				{ new_password: newPassword, new_password_confirmation: confirmNewPassword, password },
+				{
+					headers: {
+						Authorization: `Token ${currentUser.token}`,
+					},
+				}
+			);
+			return true;
+		} catch (err) {
+			console.error(err);
+			return false;
+		}
+	}
+
 	useEffect(() => {
 		function setToken() {
 			const token = localStorage.getItem('token');
@@ -100,6 +118,7 @@ export function AuthProvider({ children }) {
 		login,
 		logout,
 		deleteAccount,
+		updatePassword,
 	};
 	return <AuthContext.Provider value={value}>{!loading && children}</AuthContext.Provider>;
 }

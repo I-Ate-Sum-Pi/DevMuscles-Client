@@ -1,11 +1,15 @@
 import React from 'react';
-import { Calendar } from '../../components';
+import styles from './styles.module.css';
+import { Calendar, NavMenu } from '../../components';
 
 export default () => {
 	return (
-		<main>
-			<h1>Hello Calendar!</h1>
-			<Calendar />
-		</main>
+		<>
+			<NavMenu />
+			<main className={styles.main}>
+				<h1>Your Workout Calendar</h1>
+				<Calendar />
+			</main>
+		</>
 	);
 };

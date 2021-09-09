@@ -5,4 +5,6 @@ export { default as DashboardGreeting } from './DashboardGreeting';
 export { default as DeleteAccountModal } from './DeleteAccountModal';
 export { default as NavMenu } from './NavMenu';
 export { default as ProfileInfo } from './ProfileInfo';
+export { default as ScheduleWorkoutModal } from './ScheduleWorkoutModal';
+export { default as UpdatePasswordModal } from './UpdatePasswordModal';
 export { default as Workout } from './Workout';
