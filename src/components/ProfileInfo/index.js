@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 
-export default function index() {
+export default () => {
 	const { currentUser } = useAuth();
 	return (
 		<section aria-label="user information">
@@ -9,4 +9,4 @@ export default function index() {
 			<p aria-label="email">Email: {currentUser.email}</p>
 		</section>
 	);
-}
+};
