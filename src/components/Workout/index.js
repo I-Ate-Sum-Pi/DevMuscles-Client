@@ -5,8 +5,7 @@ import FadeLoader from 'react-spinners/FadeLoader';
 import styles from './styles.module.css';
 import { Link, useHistory } from 'react-router-dom';
 import { IconContext } from 'react-icons';
-import { IoAddCircle, IoCreate, IoCloseCircle } from 'react-icons/io5';
-import { render } from 'react-dom';
+import { IoAddCircleOutline, IoCreate, IoCloseCircleOutline } from 'react-icons/io5';
 
 export default () => {
 	const [workouts, setWorkouts] = useState([]);
@@ -71,6 +70,10 @@ export default () => {
 		setIsUpdateModalOpen(false);
 	};
 
+	const closeUpdateModal = () => {
+		setIsUpdateModalOpen(false);
+	};
+
 	useEffect(() => {
 		fetchWorkouts();
 	}, [currentUser]);
@@ -84,27 +87,26 @@ export default () => {
 			<FadeLoader data-testid="spinner" loading={isLoading} size={50} />
 		) : (
 			workouts.map((workout, i) => (
-				<div className={styles.workouts} key={i}>
-					<div
-						className={styles.workout_name}
-						onClick={() => {
-							push(`/workouts/${workout.id}`);
-						}}
-					>
-						{workout['name']}
-					</div>
-					<div className={styles.workout_icons}>
-						<div onClick={() => openUpdateForm(workout.id)}>
-							<IconContext.Provider value={{ className: styles.icon_workout }}>
+				<div className={styles.workout} key={i}>
+					<Link to={`/workouts/${workout.id}`} className={styles.workout_name}>
+						{workout.name}
+					</Link>
+					<div className={styles.workoutIcons}>
+						<button
+							onClick={() => openUpdateForm(workout.id)}
+							className={styles.workoutIconsButton}
+						>
+							<IconContext.Provider value={{ className: styles.workoutIconsIcon }}>
 								<IoCreate />
 							</IconContext.Provider>
-						</div>
-						<div onClick={() => handleDelete(workout.id)}>
-							<IconContext.Provider value={{ className: styles.icon_workout }}>
-								<IoCloseCircle />
+						</button>
+						<button onClick={() => handleDelete(workout.id)} className={styles.workoutIconsButton}>
+							<IconContext.Provider value={{ className: styles.workoutIconsIcon }}>
+								<IoCloseCircleOutline />
 							</IconContext.Provider>
-						</div>
+						</button>
 					</div>
+					<hr />
 				</div>
 			))
 		);
@@ -153,27 +155,41 @@ export default () => {
 
 	return (
 		<>
-			<div className={styles.workouts_container}>{renderWorkouts()}</div>
-			<button onClick={handleClick}>
-				<IconContext.Provider value={{ className: styles.icon }}>
-					<IoAddCircle />
-				</IconContext.Provider>
-			</button>
+			<div className={styles.workouts_container}>
+				{renderWorkouts()}
+				<button onClick={handleClick} className={styles.addWorkout}>
+					<IconContext.Provider value={{ className: styles.icon }}>
+						<IoAddCircleOutline />
+					</IconContext.Provider>
+				</button>
+			</div>
 			{isModalOpen ? (
-				<div className={styles.workout_modal}>
-					<form onSubmit={handleSubmit}>
+				<div className={styles.modal}>
+					<button onClick={closeModal} aria-label="close modal">
+						<IconContext.Provider value={{ className: styles.closeButton }}>
+							<IoCloseCircleOutline />
+						</IconContext.Provider>
+					</button>
+					<form onSubmit={handleSubmit} className={styles.form}>
 						<label htmlFor="username">Name your workout:</label>
 						<input type="text" required onChange={handleChange} />
-						<button onClick={handleSubmit}>Add workout</button>
+						<input type="submit" value="Add workout" />
 					</form>
 				</div>
 			) : null}
 			{isUpdateModalOpen ? (
-				<form onSubmit={handleUpdateSubmit}>
-					<label htmlFor="username">Rename your workout:</label>
-					<input type="text" required value={workoutUpdateName} onChange={handleUpdateChange} />
-					<button onClick={handleUpdateSubmit}>Confirm</button>
-				</form>
+				<div className={styles.modal}>
+					<button onClick={closeUpdateModal} aria-label="close modal">
+						<IconContext.Provider value={{ className: styles.closeButton }}>
+							<IoCloseCircleOutline />
+						</IconContext.Provider>
+					</button>
+					<form onSubmit={handleUpdateSubmit} className={styles.form}>
+						<label htmlFor="username">Rename your workout:</label>
+						<input type="text" required value={workoutUpdateName} onChange={handleUpdateChange} />
+						<input type="submit" value="Confirm" />
+					</form>
+				</div>
 			) : null}
 		</>
 	);
