@@ -14,16 +14,12 @@ export default () => {
 			link: '/dashboard',
 		},
 		{
-			name: 'Caledar',
+			name: 'Calendar',
 			link: '/calendar',
 		},
 		{
 			name: 'Profile',
 			link: '/profile',
-		},
-		{
-			name: 'Progress',
-			link: '/progress',
 		},
 		{
 			name: 'Workouts',
