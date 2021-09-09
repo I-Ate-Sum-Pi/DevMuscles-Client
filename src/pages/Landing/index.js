@@ -8,6 +8,7 @@ export default () => {
 		<>
 			<main className={styles.main}>
 				<h1>DevMuscles</h1>
+				<p>Plan today for a better tomorrow!</p>
 				<div role="presentation" className={styles.links}>
 					<Link to="/login" aria-label="login link">
 						Login
