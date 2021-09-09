@@ -36,6 +36,7 @@ export default () => {
 	};
 
 	let passwordInputType = () => (isPasswordVisible ? 'text ' : 'password');
+
 	return (
 		<form className={styles.form} aria-label="login form" onSubmit={handleSubmit}>
 			<label htmlFor="username">Username:</label>
@@ -60,7 +61,7 @@ export default () => {
 				onChange={handleInputChange}
 				value={formData.password}
 			/>
-			<button onClick={togglePassword} aria-label="toggle password visibilty">
+			<button type="button" onClick={togglePassword} aria-label="toggle password visibilty">
 				{isPasswordVisible ? 'Hide' : 'Show'} password
 			</button>
 			<input type="submit" value="Login" aria-label="submit login form" />
