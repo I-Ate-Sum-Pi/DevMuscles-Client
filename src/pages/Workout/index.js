@@ -1,11 +1,12 @@
-import { useParams } from 'react-router';
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
 import FadeLoader from 'react-spinners/FadeLoader';
+import React, { useState, useEffect } from 'react';
 import styles from './styles.module.css';
+import { useAuth } from '../../contexts/AuthContext';
+import { NavMenu } from '../../components';
 import { IconContext } from 'react-icons';
-import { IoAddCircle, IoCreate, IoCloseCircle } from 'react-icons/io5';
+import { IoAddCircle, IoCreate, IoCloseCircle, IoArrowBackCircleOutline } from 'react-icons/io5';
+import { Link, useParams } from 'react-router-dom';
 
 export default () => {
 	const { workout_id } = useParams();
@@ -168,6 +169,12 @@ export default () => {
 
 	return (
 		<>
+			<NavMenu />
+			<Link to="/workouts">
+				<IconContext.Provider value={{ className: styles.goBackLink }}>
+					<IoArrowBackCircleOutline />
+				</IconContext.Provider>
+			</Link>
 			<main className={styles.main}>
 				<h1>Workout Name</h1>
 				<div className={styles.exercise_section}>{renderExercises()}</div>
@@ -180,6 +187,9 @@ export default () => {
 			</main>
 			{isModalOpen ? (
 				<div className={styles.exercise_modal}>
+					<button className={styles.closeModalButton} onClick={closeModal}>
+						X
+					</button>
 					<form onSubmit={handleSubmit}>
 						<label htmlFor="name">Exercise Name:</label>
 						<input type="text" id="name" required onChange={handleInputChange} />
@@ -192,15 +202,17 @@ export default () => {
 				</div>
 			) : null}
 			{updateModalOpen ? (
-				<form onSubmit={handleUpdateSubmit}>
-					<label htmlFor="name">Exercise Name:</label>
-					<input type="text" id="name" required onChange={handleUpdateChange} />
-					<label htmlFor="reps">Reps:</label>
-					<input type="number" id="reps" required onChange={handleUpdateChange} />
-					<label htmlFor="weight">Weight:</label>
-					<input type="number" id="weight" required onChange={handleUpdateChange} />
-					<button onClick={handleUpdateSubmit}>Update Exercise</button>
-				</form>
+				<>
+					<form onSubmit={handleUpdateSubmit}>
+						<label htmlFor="name">Exercise Name:</label>
+						<input type="text" id="name" required onChange={handleUpdateChange} />
+						<label htmlFor="reps">Reps:</label>
+						<input type="number" id="reps" required onChange={handleUpdateChange} />
+						<label htmlFor="weight">Weight:</label>
+						<input type="number" id="weight" required onChange={handleUpdateChange} />
+						<button onClick={handleUpdateSubmit}>Update Exercise</button>
+					</form>
+				</>
 			) : null}
 		</>
 	);
