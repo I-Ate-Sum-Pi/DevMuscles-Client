@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
-import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
@@ -25,7 +24,6 @@ export default () => {
 		});
 	};
 
-	const { push } = useHistory();
 	const togglePassword = (e) => {
 		e.preventDefault();
 		setIsPasswordVisible((prevState) => !prevState);
@@ -63,7 +61,6 @@ export default () => {
 			if (!response) {
 				throw new Error('Oops! Something went wrong');
 			}
-			push('/dashboard');
 		} catch (err) {
 			console.error(err);
 		}

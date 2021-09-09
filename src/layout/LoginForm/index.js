@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import styles from './styles.module.css';
-import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
 
 export default () => {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-	const { push } = useHistory();
 
 	const [formData, setFormData] = useState({
 		username: '',
@@ -30,9 +28,7 @@ export default () => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const response = login(formData.username, formData.password);
-		if (response) {
-			push('/dashboard');
-		} else {
+		if (!response) {
 			alert('Something went wrong, please try again.');
 		}
 	};
