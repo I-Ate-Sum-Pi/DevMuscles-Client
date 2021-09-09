@@ -10,6 +10,10 @@ jest.mock('../../Layout/UpdatePassword/index.js', () => () => (
 	<section aria-label="update password"></section>
 ));
 
+jest.mock('../../Layout/UpdateEmail/index.js', () => () => (
+	<section aria-label="update email"></section>
+));
+
 jest.mock('../../Layout/DeleteAccount/index.js', () => () => (
 	<section aria-label="delete account"></section>
 ));
@@ -32,6 +36,11 @@ describe('Profile Page', () => {
 	it('Renders a profile info section', () => {
 		let userInfo = screen.getByLabelText('user information');
 		expect(userInfo).toBeInTheDocument();
+	});
+
+	it('Renders a update email section', () => {
+		const updateEmail = screen.getByLabelText('update email');
+		expect(updateEmail).toBeInTheDocument();
 	});
 
 	it('Renders a update password section', () => {
