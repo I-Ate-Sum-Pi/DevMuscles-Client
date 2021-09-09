@@ -16,6 +16,7 @@ export default () => {
 		push(`/calendar/${dayjs(e).format('YYYY-MM-DD')}`);
 	};
 
+
 	useEffect(() => {
 		const fetchDatesWithWorkouts = async () => {
 			try {
@@ -42,7 +43,6 @@ export default () => {
 			? styles.highlightedDay
 			: null;
 	};
-
 	return (
 		<section aria-label="Calendar">
 			<Calendar onChange={changeDate} tileClassName={tileClassName} />
