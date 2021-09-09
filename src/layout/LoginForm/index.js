@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styles from './styles.module.css';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
+import { IconContext } from 'react-icons';
 
 export default () => {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -62,7 +64,9 @@ export default () => {
 				value={formData.password}
 			/>
 			<button type="button" onClick={togglePassword} aria-label="toggle password visibilty">
-				{isPasswordVisible ? 'Hide' : 'Show'} password
+				<IconContext.Provider value={{ className: styles.passwordIcon }}>
+					{isPasswordVisible ? <IoEyeOutline /> : <IoEyeOffOutline />}
+				</IconContext.Provider>
 			</button>
 			<input type="submit" value="Login" aria-label="submit login form" />
 		</form>

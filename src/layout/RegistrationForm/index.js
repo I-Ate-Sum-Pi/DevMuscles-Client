@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styles from './styles.module.css';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
+import { IoEyeOutline, IoEyeOffOutline } from 'react-icons/io5';
+import { IconContext } from 'react-icons';
 
 export default () => {
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -104,7 +106,9 @@ export default () => {
 				style={passwordStyle}
 			/>
 			<button type="button" onClick={togglePassword} aria-label="toggle password visibilty">
-				{isPasswordVisible ? 'Hide' : 'Show'} password
+				<IconContext.Provider value={{ className: styles.passwordIcon }}>
+					{isPasswordVisible ? <IoEyeOutline /> : <IoEyeOffOutline />}
+				</IconContext.Provider>
 			</button>
 			<label htmlFor="confirmPassword">Confirm password:</label>
 			<input
@@ -123,7 +127,9 @@ export default () => {
 				onClick={toggleConfirmPassword}
 				aria-label="toggle confirm password visibilty"
 			>
-				{isConfirmPasswordVisible ? 'Hide' : 'Show'} password
+				<IconContext.Provider value={{ className: styles.passwordIcon }}>
+					{isConfirmPasswordVisible ? <IoEyeOutline /> : <IoEyeOffOutline />}
+				</IconContext.Provider>
 			</button>
 			<input type="submit" value="Login" aria-label="submit registration form" />
 			{isPasswordMatchError ? (
