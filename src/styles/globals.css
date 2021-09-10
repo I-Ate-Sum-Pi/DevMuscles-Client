@@ -9,6 +9,9 @@ body {
 	min-height: 100vh;
 	color: #eef6ff;
 	font-family: 'Roboto', sans-serif;
+	background-image: url('../assets/images/bg-portrait.svg');
+	background-size: cover;
+	background-repeat: repeat;
 }
 
 input {
@@ -18,15 +21,9 @@ input {
 a {
 	color: #eef6ff;
 }
-main {
-	min-height: 100vh;
-	background-image: url('../assets/images/bg-portrait.svg');
-	background-size: cover;
-	background-repeat: no-repeat;
-}
 
 @media only screen and (min-width: 600px) {
-	main {
+	body {
 		background-image: url('../assets/images/bg-landscape.svg');
 	}
 }
