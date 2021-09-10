@@ -1,6 +1,22 @@
-.deleteAccount {
+.updatePassword {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	padding: 20px;
+}
+.updatePassword button {
+	width: 200px;
+	padding: 10px 20px;
+	margin: 10px 0 10px;
+	font-size: 1.2rem;
+	border-radius: 10px;
+	border: none;
+	background: #009473;
+	color: inherit;
+	box-shadow: 5px 5px 10px #007e62, -5px -5px 10px #00aa84;
+	transition: 0.08s;
+}
+
+.updatePassword button:hover {
+	box-shadow: 5px 5px 4px #008568, -5px -5px 4px #00a37f;
 }

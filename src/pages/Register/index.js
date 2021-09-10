@@ -8,13 +8,14 @@ export default () => {
 	return (
 		<>
 			<Link className={styles.homeButton} to="/" aria-label="return to landing page">
-				Go back
+				Home
 			</Link>
 			<main className={styles.main}>
 				<h1>Register</h1>
 				<RegistrationForm />
+				<p>Already have an account yet?</p>
 				<Link to="/login" aria-label="go to register page">
-					Already have an account yet? Login here
+					Login here
 				</Link>
 			</main>
 			<PrivacyPolicyLink />

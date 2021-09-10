@@ -3,7 +3,6 @@ import styles from './styles.module.css';
 import { Link, NavLink } from 'react-router-dom';
 import { IoReorderThree } from 'react-icons/io5';
 import { IconContext } from 'react-icons';
-import { PrivacyPolicyLink } from '..';
 
 export default () => {
 	const [isNavVisible, setIsNavVisible] = useState(false);
@@ -39,7 +38,9 @@ export default () => {
 	const renderLinks = () =>
 		pages.map((page, i) => (
 			<li key={i}>
-				<NavLink to={page.link}>{page.name}</NavLink>
+				<NavLink activeClassName={styles.active} exact to={page.link}>
+					{page.name}
+				</NavLink>
 			</li>
 		));
 

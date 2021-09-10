@@ -1,0 +1,10 @@
+.section {
+	background-color: #00112291;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.section p {
+	font-size: 1.2rem;
+	text-align: center;
+}

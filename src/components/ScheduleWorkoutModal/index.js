@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams, Link, useHistory, useLocation } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 import styles from './styles.module.css';
+import { IconContext } from 'react-icons';
+import { IoCloseCircleOutline } from 'react-icons/io5';
 
 export default ({ showModal, closeModal }) => {
 	const [timeValue, setTimeValue] = useState('10:00');
@@ -84,9 +86,13 @@ export default ({ showModal, closeModal }) => {
 	};
 	return (
 		<div style={modalStyle} className={styles.modal}>
-			<button onClick={closeModal}>X</button>
+			<button onClick={closeModal}>
+				<IconContext.Provider value={{ className: styles.closeButton }}>
+					<IoCloseCircleOutline />
+				</IconContext.Provider>
+			</button>
 			<section>
-				<form onSubmit={handleSubmit}>
+				<form onSubmit={handleSubmit} className={styles.form}>
 					<label htmlFor="time">Select time:</label>
 					<input
 						type="time"
@@ -108,9 +114,9 @@ export default ({ showModal, closeModal }) => {
 					</select>
 					<input type="submit" value="Add workout" />
 				</form>
-				<p>
-					Don't see the workout you want? Create a new workout on the
-					<Link to="/workouts">workouts page</Link>
+				<p className={styles.createWorkout}>
+					Don't see the workout you want? <br />
+					<Link to="/workouts">Create a new workout</Link>
 				</p>
 			</section>
 		</div>

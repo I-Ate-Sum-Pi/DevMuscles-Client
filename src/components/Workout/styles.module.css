@@ -1,34 +1,172 @@
 .workouts_container {
-	width: 90%;
-	border: solid 1px red;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}
-.workouts {
-	min-width: 45%;
-	height: 100px;
-	margin-bottom: 20px;
-	border: solid 1px black;
+	width: 80%;
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
 	align-items: center;
+	padding: 20px;
+	background-color: #00112291;
+	border-radius: 10px;
+}
+
+.workout {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 80%;
+}
+.workoutIcons {
+	display: flex;
+}
+.workoutIcons button:nth-child(1) {
+	margin-right: 15px;
+	background-color: #008568;
+}
+
+.workoutIcons button:nth-child(2) {
+	background-color: #940000;
+}
+
+.workoutIconsButton {
+	display: flex;
+	align-items: center;
+	margin: 20px 0;
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+	text-decoration: none;
+	transition: 0.1s;
+	color: #eef6ff;
+}
+
+.workoutIconsButton:hover {
+	background-color: #0a997a;
+}
+
+.workoutIconsIcon {
+	height: 25px;
+	width: 25px;
+}
+
+.workout a {
+	font-size: 1.2rem;
+	text-transform: capitalize;
+	background-color: #008568;
+	padding: 5px;
+	border-radius: 5px;
+	transition: 0.1s;
+	text-decoration: none;
+}
+.workout a:hover {
+	background-color: #0a997a;
+}
+
+.workout hr {
+	width: 100%;
+	margin: 15px 0;
+}
+
+.addWorkout {
+	display: flex;
+	align-items: center;
+	margin: 20px 0;
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+	text-decoration: none;
+	transition: 0.1s;
+	color: #eef6ff;
+	background-color: #008568;
+}
+
+.addWorkout:hover {
+	background-color: #0a997a;
 }
 .icon {
-	height: 60px;
-	width: 60px;
+	height: 40px;
+	width: 40px;
 }
-.workout_name {
-	border: solid 1px red;
+
+.modal {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	position: fixed;
+	top: 10vh;
+	right: 10vw;
+	background-color: #001122f8;
+	border: 1px solid #00aa84;
+	width: 80vw;
+	border-radius: 10px;
 }
-.workout_icons {
-	border: solid 1px red;
+.modal button:nth-child(1) {
+	display: grid;
+	place-items: center;
+	position: fixed;
+	top: calc(1px + 10vh);
+	right: calc(1px + 10vw);
+	background-color: #940000;
+	padding: 5px;
+	border-radius: 10px;
+	border: none;
+	text-decoration: none;
+	transition: 0.1s;
 }
-.workout_modal {
-	height: 50%;
-	width: 90%;
-	background-color: green;
-	position: absolute;
-	top: 25%;
+
+.modal button:nth-child(1):hover {
+	background-color: #ac1a1a;
+}
+.modal p {
+	font-size: 1.2rem;
+	text-align: center;
+	margin: 50px 0 30px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 30px 0;
+}
+
+.form > * {
+	margin: 5px 0;
+}
+
+.form label {
+	font-size: 1.2rem;
+	width: 200px;
+}
+
+.form input {
+	font-size: 1rem;
+	padding: 5px 10px;
+	border-radius: 10px;
+	border: none;
+}
+
+.form input:focus {
+	outline: none;
+	box-shadow: inset 0 0 5px #00aa84;
+}
+
+.form input[type='submit'] {
+	padding: 10px 20px;
+	margin: 30px 0 10px;
+	font-size: 1.2rem;
+	border-radius: 10px;
+	background: #009473;
+	color: inherit;
+	box-shadow: 5px 5px 10px #007e62, -5px -5px 10px #00aa84;
+	transition: 0.08s;
+}
+
+.form input[type='submit']:hover {
+	box-shadow: 5px 5px 4px #008568, -5px -5px 4px #00a37f;
+}
+.closeButton {
+	height: 30px;
+	width: 30px;
+	color: #eef6ff;
 }

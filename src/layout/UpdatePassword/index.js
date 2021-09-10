@@ -15,10 +15,7 @@ export default () => {
 	return (
 		<>
 			<UpdatePasswordModal showModal={isModalOpen} closeModal={closeModal} />
-			<section className={styles.deleteAccount} aria-label="update password">
-				<p aria-label="update password explanation">
-					To change your password click the button below
-				</p>
+			<section className={styles.updatePassword} aria-label="update password">
 				<button onClick={handleClick}>Update Password</button>
 			</section>
 		</>

@@ -1,0 +1,72 @@
+.workoutsContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 85%;
+	padding: 20px;
+	background-color: #00112291;
+	border-radius: 10px;
+}
+
+.button,
+.deleteButton {
+	display: flex;
+	align-items: center;
+	margin: 20px 0;
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+	text-decoration: none;
+	transition: 0.1s;
+	color: #eef6ff;
+}
+
+.button {
+	background-color: #008568;
+}
+
+.deleteButton {
+	background-color: #940000;
+}
+
+.button:hover {
+	background-color: #0a997a;
+}
+
+.deleteButton:hover {
+	background-color: #ac1a1a;
+}
+
+.completeIcon {
+	height: 30px;
+	width: 30px;
+}
+.addWorkoutIcon {
+	color: #eef6ff;
+	height: 40px;
+	width: 40px;
+}
+
+.workout,
+.workoutInfo {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 80%;
+}
+
+.workoutInfo {
+	flex-basis: 100%;
+}
+
+.workout p {
+	font-size: 1.2rem;
+	text-transform: capitalize;
+	margin: 0;
+}
+
+.workout hr {
+	width: 100%;
+	margin: 15px 0;
+}

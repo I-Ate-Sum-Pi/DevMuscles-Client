@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <g transform="matrix(1.818742, 0, 0, 2.450221, -161.743881, -298.180328)" style="">
+    <rect x="132.777" y="211.094" width="185.746" height="22.447" style="fill: rgb(238, 246, 255);"/>
+    <g transform="matrix(1.040265, 0, 0, 1, -61.649139, -0.089266)" style="">
+      <rect x="-363.348" y="146.403" width="35.907" height="152.076" style="fill: rgb(238, 246, 255);" transform="matrix(-1, 0, 0, 1, 0, 0)"/>
+      <rect x="-398.71" y="184.002" width="37.54" height="76.318" style="fill: rgb(238, 246, 255);" transform="matrix(-1, 0, 0, 1, 0, 0)"/>
+    </g>
+    <g transform="matrix(-1.04008, 0, 0, 1, 513.683472, -0.089268)" style="">
+      <rect x="-363.348" y="146.403" width="35.907" height="152.076" style="fill: rgb(238, 246, 255);" transform="matrix(-1, 0, 0, 1, 0, 0)"/>
+      <rect x="-398.71" y="184.002" width="37.54" height="76.318" style="fill: rgb(238, 246, 255);" transform="matrix(-1, 0, 0, 1, 0, 0)"/>
+    </g>
+  </g>
+</svg>

@@ -16,8 +16,7 @@ export default () => {
 	return (
 		<>
 			<UpdateEmailModal showModal={isModalOpen} closeModal={closeModal} />
-			<section className={styles.deleteAccount} aria-label="update email">
-				<p aria-label="update email explanation">To change your email click the button below</p>
+			<section className={styles.updateEmail} aria-label="update email">
 				<button onClick={handleClick}>Update Email</button>
 			</section>
 		</>

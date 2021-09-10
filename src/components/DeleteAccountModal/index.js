@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import styles from './styles.module.css';
+import { IconContext } from 'react-icons';
+import { IoCloseCircleOutline } from 'react-icons/io5';
 
 export default ({ showModal, closeModal }) => {
 	const [usernameValue, setUsernameValue] = useState('');
@@ -28,9 +30,13 @@ export default ({ showModal, closeModal }) => {
 	return (
 		<div style={modalStyle} className={styles.modal} aria-label="delete account modal">
 			<button onClick={closeModal} aria-label="close modal">
-				X
+				<IconContext.Provider value={{ className: styles.closeButton }}>
+					<IoCloseCircleOutline />
+				</IconContext.Provider>
 			</button>
-			<p role="alert">WARNING! This action is irrevesisble</p>
+			<p role="alert" className={styles.warningMessage}>
+				WARNING! This action is irrevesisble
+			</p>
 			<form aria-label="delete account form" className={styles.form} onSubmit={handleSubmit}>
 				<label htmlFor="username">
 					To delete your account please type <b>{currentUser.username}</b>
@@ -42,7 +48,11 @@ export default ({ showModal, closeModal }) => {
 					onChange={handleChange}
 					aria-label="confirm username"
 				/>
-				<input type="submit" value="Delete Account" disabled={isMatchError} />
+				<input
+					type="submit"
+					value={isMatchError ? 'disabled' : 'Delete Account'}
+					disabled={isMatchError}
+				/>
 			</form>
 		</div>
 	);

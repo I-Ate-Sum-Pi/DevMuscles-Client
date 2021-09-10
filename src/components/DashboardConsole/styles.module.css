@@ -2,29 +2,62 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	width: 100%;
+	width: 80%;
 	padding: 20px;
+	background-color: #00112291;
+	border-radius: 10px;
 }
 
-.heading {
+.console h2 {
+	margin: 20px 0 40px;
+}
+
+.workout {
 	display: flex;
-	justify-content: space-evenly;
-	align-items: flex-end;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
 	width: 100%;
 }
 
-.heading h2,
-.heading p {
+.workout p {
+	font-size: 1.2rem;
 	margin: 0;
+}
+
+.workout a {
+	font-size: 1.2rem;
+	text-transform: capitalize;
+	background-color: #008568;
+	padding: 5px;
+	border-radius: 5px;
+	transition: 0.1s;
+	text-decoration: none;
+}
+.workout a:hover {
+	background-color: #0a997a;
+}
+
+.workout hr {
+	width: 100%;
+	margin: 15px 0;
 }
 
 .addWorkoutLink {
 	display: flex;
 	align-items: center;
-	margin: 20px 0;
+	margin: 40px 0 10px;
+	background-color: #008568;
+	padding: 5px;
+	border-radius: 5px;
+	text-decoration: none;
+	transition: 0.1s;
 }
 
+.addWorkoutLink:hover {
+	background-color: #0a997a;
+}
 .icon {
-	height: 30px;
-	width: 30px;
+	height: 40px;
+	width: 40px;
 }
