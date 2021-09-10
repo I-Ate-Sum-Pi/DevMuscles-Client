@@ -68,7 +68,7 @@ export default () => {
 					<p>
 						{workout.time.toString().slice(0, 2)}:{workout.time.toString().slice(2)}
 					</p>
-					<Link to={`/workouts/${workout.id}`}>{workout.name}</Link>
+					<Link to={`/workouts/${workout.workout_id}`}>{workout.name}</Link>
 					{i === workouts.length - 1 ? null : <hr />}
 				</div>
 			))
