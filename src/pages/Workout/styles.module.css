@@ -11,76 +11,195 @@
 	flex-direction: column;
 	align-items: center;
 	height: 100vh;
-	border: solid 1px red;
 }
+
 .main h1 {
 	margin-top: 0;
 	padding-top: 50px;
+	text-transform: capitalize;
 }
-.exercise_section {
-	width: 100%;
-	height: 75vh;
-	border: solid 1px red;
+
+.exercisesContainer {
+	width: 80%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	overflow-y: scroll;
+	padding: 20px;
+	background-color: #00112291;
+	border-radius: 10px;
 }
 
 .exercise {
-	width: 90%;
-	margin-bottom: 20px;
-	border: solid 1px red;
-}
-
-.exercise_name {
-	text-align: center;
-	padding: 10px;
-	position: relative;
-}
-.exercise_content {
 	width: 100%;
-	display: flex;
 }
-.exercise_reps,
-.exercise_weight {
-	width: 50%;
-	border: solid 1px red;
+
+.exerciseName {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
-	padding: 10px;
+	flex-wrap: wrap;
+	width: 100%;
+}
+.exerciseIcons {
+	display: flex;
+}
+.exerciseIcons button:nth-child(1) {
+	margin-right: 15px;
+	background-color: #008568;
 }
 
-.exercise_modal {
-	height: 50%;
-	width: 90%;
-	background-color: green;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+.exerciseIcons button:nth-child(2) {
+	background-color: #940000;
 }
 
-.closeModalButton {
-	position: fixed;
-	top: 10px;
-	right: 10px;
+.exerciseIconsButton {
+	display: flex;
+	align-items: center;
+	margin: 10px 0;
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+	text-decoration: none;
+	transition: 0.1s;
+	color: #eef6ff;
+}
+
+.exerciseIconsButton:hover {
+	background-color: #0a997a;
+}
+
+.exerciseIconsIcon {
+	height: 25px;
+	width: 25px;
+}
+
+.exercise p {
+	font-size: 1.5rem;
+	text-transform: capitalize;
+	margin: 0;
+}
+
+.exercise hr {
+	width: 100%;
+	margin: 15px 0;
+}
+
+.exerciseInfoContainer {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.exerciseInfo h2 {
+	font-size: 1.2rem;
+	font-weight: 400;
+	margin-top: 10px;
+}
+
+.exerciseInfo p {
+	font-size: 1.2rem;
+}
+
+.addWorkout {
+	display: flex;
+	align-items: center;
+	margin: 20px 0;
+	padding: 5px;
+	border: none;
+	border-radius: 5px;
+	text-decoration: none;
+	transition: 0.1s;
+	color: #eef6ff;
+	background-color: #008568;
+}
+
+.addWorkout:hover {
+	background-color: #0a997a;
 }
 .icon {
-	height: 60px;
-	width: 60px;
+	height: 40px;
+	width: 40px;
 }
-.icon_exercise {
-	height: 20px;
-	width: 20px;
-	margin-left: 10px;
-}
-.workout_icons {
-	position: absolute;
-	border: solid 1px red;
-	top: 0;
-	right: 0;
+
+.modal {
 	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+	position: fixed;
+	top: 10vh;
+	right: 10vw;
+	background-color: #001122f8;
+	border: 1px solid #00aa84;
+	width: 80vw;
+	border-radius: 10px;
+}
+.modal button:nth-child(1) {
+	display: grid;
+	place-items: center;
+	position: fixed;
+	top: calc(1px + 10vh);
+	right: calc(1px + 10vw);
+	background-color: #940000;
+	padding: 5px;
+	border-radius: 10px;
+	border: none;
+	text-decoration: none;
+	transition: 0.1s;
+}
+
+.modal button:nth-child(1):hover {
+	background-color: #ac1a1a;
+}
+.modal p {
+	font-size: 1.2rem;
+	text-align: center;
+	margin: 50px 0 30px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 30px 0;
+}
+
+.form > * {
+	margin: 5px 0;
+}
+
+.form label {
+	font-size: 1.2rem;
+	width: 200px;
+}
+
+.form input {
+	font-size: 1rem;
+	padding: 5px 10px;
+	border-radius: 10px;
+	border: none;
+}
+
+.form input:focus {
+	outline: none;
+	box-shadow: inset 0 0 5px #00aa84;
+}
+
+.form input[type='submit'] {
+	padding: 10px 20px;
+	margin: 30px 0 10px;
+	font-size: 1.2rem;
+	border-radius: 10px;
+	background: #009473;
+	color: inherit;
+	box-shadow: 5px 5px 10px #007e62, -5px -5px 10px #00aa84;
+	transition: 0.08s;
+}
+
+.form input[type='submit']:hover {
+	box-shadow: 5px 5px 4px #008568, -5px -5px 4px #00a37f;
+}
+.closeButton {
+	height: 30px;
+	width: 30px;
+	color: #eef6ff;
 }

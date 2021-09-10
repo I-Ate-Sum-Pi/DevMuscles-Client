@@ -5,12 +5,19 @@ import styles from './styles.module.css';
 import { useAuth } from '../../contexts/AuthContext';
 import { NavMenu } from '../../components';
 import { IconContext } from 'react-icons';
-import { IoAddCircle, IoCreate, IoCloseCircle, IoArrowBackCircleOutline } from 'react-icons/io5';
+import {
+	IoAddCircleOutline,
+	IoCreate,
+	IoCloseCircle,
+	IoCloseCircleOutline,
+	IoArrowBackCircleOutline,
+} from 'react-icons/io5';
 import { Link, useParams } from 'react-router-dom';
 
 export default () => {
 	const { workout_id } = useParams();
 	const [exercises, setExercises] = useState([]);
+	const [workout, setWorkout] = useState({});
 	const [exerciseId, setExerciseId] = useState('');
 	const [isLoading, setIsLoading] = useState(true);
 	const [isError, setIsError] = useState(false);
@@ -58,6 +65,20 @@ export default () => {
 		}
 	};
 
+	const fetchWorkoutData = async () => {
+		try {
+			const { data } = await axios.get(
+				`${API_ROOT}/users/${currentUser.id}/workouts/${workout_id}`,
+				{
+					headers: { Authorization: `Token ${currentUser.token}` },
+				}
+			);
+			setWorkout(data);
+		} catch (err) {
+			setIsError(true);
+		}
+	};
+
 	const newExercise = async () => {
 		try {
 			const { new_data } = await axios.post(
@@ -72,8 +93,13 @@ export default () => {
 		}
 	};
 
-	const openUpdateForm = (exerciseId) => {
-		setExerciseId(exerciseId);
+	const openUpdateForm = (exercise) => {
+		setExerciseId(exercise.id);
+		setUpdateData({
+			name: exercise.name,
+			reps: exercise.reps,
+			weight: exercise.weight,
+		});
 		setUpdateModalOpen(true);
 	};
 	const updateExercise = async () => {
@@ -91,6 +117,7 @@ export default () => {
 	};
 	useEffect(() => {
 		fetchExercises();
+		fetchWorkoutData();
 	}, [currentUser]);
 
 	const renderExercises = () => {
@@ -103,31 +130,38 @@ export default () => {
 		) : (
 			exercises.map((exercise, i) => (
 				<div key={i} className={styles.exercise}>
-					<div className={styles.exercise_name}>
-						{exercise['name']}
-						<div className={styles.workout_icons}>
-							<div onClick={() => openUpdateForm(exercise.id)}>
-								<IconContext.Provider value={{ className: styles.icon_exercise }}>
+					<div className={styles.exerciseName}>
+						<p>{exercise.name}</p>
+						<div className={styles.exerciseIcons}>
+							<button
+								onClick={() => openUpdateForm(exercise)}
+								className={styles.exerciseIconsButton}
+							>
+								<IconContext.Provider value={{ className: styles.exerciseIconsIcon }}>
 									<IoCreate />
 								</IconContext.Provider>
-							</div>
-							<div onClick={() => handleDelete(exercise.id)}>
-								<IconContext.Provider value={{ className: styles.icon_exercise }}>
+							</button>
+							<button
+								onClick={() => handleDelete(exercise.id)}
+								className={styles.exerciseIconsButton}
+							>
+								<IconContext.Provider value={{ className: styles.exerciseIconsIcon }}>
 									<IoCloseCircle />
 								</IconContext.Provider>
-							</div>
+							</button>
 						</div>
 					</div>
-					<div className={styles.exercise_content}>
-						<div className={styles.exercise_reps}>
-							<div>Reps</div>
-							<div>{exercise['reps']}</div>
+					<div className={styles.exerciseInfoContainer}>
+						<div className={styles.exerciseInfo}>
+							<h2>Reps</h2>
+							<p>{exercise.reps}</p>
 						</div>
-						<div className={styles.exercise_weight}>
-							<div>Weight</div>
-							<div>{exercise['weight']}kg</div>
+						<div className={styles.exerciseInfo}>
+							<h2>Weight</h2>
+							<p>{exercise.weight}kg</p>
 						</div>
 					</div>
+					<hr />
 				</div>
 			))
 		);
@@ -139,6 +173,10 @@ export default () => {
 	const closeModal = () => {
 		setIsModalOpen(false);
 	};
+	const closeUpdateModal = () => {
+		setUpdateModalOpen(false);
+	};
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		await newExercise();
@@ -176,43 +214,71 @@ export default () => {
 				</IconContext.Provider>
 			</Link>
 			<main className={styles.main}>
-				<h1>Workout Name</h1>
-				<div className={styles.exercise_section}>{renderExercises()}</div>
-				{/* <button onClick={handleClick}>Add Exercise</button> */}
-				<button onClick={handleClick}>
-					<IconContext.Provider value={{ className: styles.icon }}>
-						<IoAddCircle />
-					</IconContext.Provider>
-				</button>
+				<h1>{workout.name}</h1>
+				<div className={styles.exercisesContainer}>
+					{renderExercises()}
+					<button onClick={handleClick} className={styles.addWorkout}>
+						<IconContext.Provider value={{ className: styles.icon }}>
+							<IoAddCircleOutline />
+						</IconContext.Provider>
+					</button>
+				</div>
 			</main>
 			{isModalOpen ? (
-				<div className={styles.exercise_modal}>
+				<div className={styles.modal}>
 					<button className={styles.closeModalButton} onClick={closeModal}>
-						X
+						{' '}
+						<IconContext.Provider value={{ className: styles.closeButton }}>
+							<IoCloseCircleOutline />
+						</IconContext.Provider>
 					</button>
-					<form onSubmit={handleSubmit}>
+					<form onSubmit={handleSubmit} className={styles.form}>
 						<label htmlFor="name">Exercise Name:</label>
 						<input type="text" id="name" required onChange={handleInputChange} />
 						<label htmlFor="reps">Reps:</label>
 						<input type="number" id="reps" required onChange={handleInputChange} />
-						<label htmlFor="weight">Weight:</label>
+						<label htmlFor="weight">Weight (kg):</label>
 						<input type="number" id="weight" required onChange={handleInputChange} />
-						<button onClick={handleSubmit}>Add workout</button>
+						<input type="submit" value="Add Exercise" />
 					</form>
 				</div>
 			) : null}
 			{updateModalOpen ? (
-				<>
-					<form onSubmit={handleUpdateSubmit}>
+				<div className={styles.modal}>
+					<button className={styles.closeModalButton} onClick={closeUpdateModal}>
+						{' '}
+						<IconContext.Provider value={{ className: styles.closeButton }}>
+							<IoCloseCircleOutline />
+						</IconContext.Provider>
+					</button>
+					<form onSubmit={handleUpdateSubmit} className={styles.form}>
 						<label htmlFor="name">Exercise Name:</label>
-						<input type="text" id="name" required onChange={handleUpdateChange} />
+						<input
+							type="text"
+							id="name"
+							required
+							onChange={handleUpdateChange}
+							value={updateData.name}
+						/>
 						<label htmlFor="reps">Reps:</label>
-						<input type="number" id="reps" required onChange={handleUpdateChange} />
-						<label htmlFor="weight">Weight:</label>
-						<input type="number" id="weight" required onChange={handleUpdateChange} />
-						<button onClick={handleUpdateSubmit}>Update Exercise</button>
+						<input
+							type="number"
+							id="reps"
+							required
+							onChange={handleUpdateChange}
+							value={updateData.reps}
+						/>
+						<label htmlFor="weight">Weight (kg):</label>
+						<input
+							type="number"
+							id="weight"
+							required
+							onChange={handleUpdateChange}
+							value={updateData.weight}
+						/>
+						<input type="submit" value="Update Exercise" />
 					</form>
-				</>
+				</div>
 			) : null}
 		</>
 	);
